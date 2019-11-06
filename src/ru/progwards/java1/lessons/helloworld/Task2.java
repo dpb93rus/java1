@@ -3,7 +3,7 @@ package ru.progwards.java1.lessons.helloworld;
 
 public class Task2 {
     public static void subtraction(int x, int y){
-        int z = x + y;
+        int z = x - y;
         System.out.print("Вызвана функция subtraction() с параметрами x = ");
         System.out.print(x);
         System.out.print(", y = ");
