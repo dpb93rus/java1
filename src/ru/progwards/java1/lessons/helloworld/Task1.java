@@ -14,5 +14,6 @@ public class Task1 {
         System.out.print(b);
         System.out.print(c);
         System.out.println(a);
+        System.out.println(a);
     }
 }
