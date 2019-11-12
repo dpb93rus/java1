@@ -19,7 +19,7 @@ public class AccuracyDoubleFloat {
 
     public static void main(String[] args) {
         double x = volumeBallDouble(6371.2);
-        double y = volumeBallFloat(6371.2f);
+        float y = volumeBallFloat(6371.2f);
         double z = calculateAccuracy(6371.2);
         System.out.println(x);
         System.out.println(y);
