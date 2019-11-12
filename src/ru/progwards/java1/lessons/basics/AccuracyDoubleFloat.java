@@ -7,7 +7,7 @@ public class AccuracyDoubleFloat {
     }
     public static float volumeBallFloat(float radius){
         float p = 3.14f;
-        float v = 4/3*p*radius*radius*radius;
+        float v = 4.0f/3.0f*p*radius*radius*radius;
         return v;
     }
     public static double calculateAccuracy(double radius){
