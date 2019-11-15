@@ -4,6 +4,9 @@ public class CyclesGoldenFibo {
     public static boolean containsDigit(int number, int digit) {
         boolean f = false;
         int ost = 0;
+        if (number == digit) {
+            f = true;
+        } else {
         while ((number > 0)&&(f != true)) {
             ost = number % 10;
             if (ost == digit) {
@@ -11,6 +14,7 @@ public class CyclesGoldenFibo {
             }
                 number = number / 10;
             }
+        }
             return f;
     }
 
@@ -39,7 +43,7 @@ public class CyclesGoldenFibo {
         }
 
     public static void main(String[] args) {
-        System.out.println(containsDigit(33534278, 5));
+        System.out.println(containsDigit(0, 0));
         int a = 1;
         int b = 1;
         int c = 1;
