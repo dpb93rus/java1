@@ -51,8 +51,8 @@ public class CyclesGoldenFibo {
         while (count <= 15);
         count = 1;
         int count2 = 1;
-        while (count <= 100) {
-            while (count2 <= 100) {
+        while (fiboNumber(count) <= 100) {
+            while (fiboNumber(count2) <= 100) {
                 a = fiboNumber(count);
                 b = fiboNumber(count);
                 c = fiboNumber(count2);
