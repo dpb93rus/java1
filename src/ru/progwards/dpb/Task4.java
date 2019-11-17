@@ -6,7 +6,7 @@ public class Task4 {
         return v;
     }
 
-    public static void main(String[] args) {
+    public static void main(Convert[] args) {
         double z = fractional(33423.5464);
         System.out.println(z);
     }
