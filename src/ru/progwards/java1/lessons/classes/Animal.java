@@ -33,7 +33,7 @@ public class Animal {
     }
 
     public double getWeight() {
-        double w = 1;
+        double w = 1.0;
         return w;
     }
 

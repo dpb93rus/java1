@@ -9,7 +9,7 @@ public class ComplexNum {
     }
 
     public String toString() {
-        return ("z=" + a + "+" + b + "i");
+        return (a + "+" + b + "i");
     }
 
     public ComplexNum add(ComplexNum num1, ComplexNum num2) {
