@@ -20,5 +20,9 @@ public class Duck extends Animal {
         double c = 0.04;
         return c;
     }
+    public static void main(String[] args) {
+        Duck A1 = new Duck(12.3);
+        System.out.println(A1);
+    }
 }
 

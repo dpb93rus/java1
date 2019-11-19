@@ -19,4 +19,8 @@ public class Cow extends Animal {
         double c = 0.05;
         return c;
     }
+    public static void main(String[] args) {
+        Cow A1 = new Cow(12.3);
+        System.out.println(A1);
+    }
 }

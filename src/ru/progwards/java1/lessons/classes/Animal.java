@@ -29,7 +29,7 @@ public class Animal {
     }
 
     public String toString() {
-        return ("I am" + AnimalKind() + ",eat" + FoodKind() + CalculateFoodWeight());
+        return ("I am " + getKind() + ",eat " + getFoodKind() + " " + CalculateFoodWeight());
     }
 
     public double getWeight() {
@@ -48,5 +48,7 @@ public class Animal {
     }
 
     public static void main(String[] args) {
+        Animal A1 = new Animal(12.3);
+        System.out.println(A1);
     }
 }

@@ -20,5 +20,9 @@ public class Hamster extends Animal{
         double c = 0.03;
         return c;
     }
+    public static void main(String[] args) {
+        Hamster A1 = new Hamster(12.3);
+        System.out.println(A1);
+    }
 }
 
