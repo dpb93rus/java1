@@ -25,11 +25,11 @@ public class ComplexNum {
         return new ComplexNum(((num1.a * num2.a + num1.b * num2.b) / (num2.a * num2.a + num2.b * num2.b)),((num2.a * num1.b - num1.a * num2.b)/(num2.a * num2.a + num2.b * num2.b)));
     }
     public static void main(String[] args) {
-        ComplexNum a = new ComplexNum(5, 2);
-        ComplexNum b = new ComplexNum(1, 1);
-        System.out.println(a.add(a, b));
-        System.out.println(a.sub(a, b));
-        System.out.println(a.mul(a, b));
-        System.out.println(a.div(a, b));
+        ComplexNum x = new ComplexNum(5, 2);
+        ComplexNum y = new ComplexNum(1, 1);
+        System.out.println(x.add(x, y));
+        System.out.println(x.sub(x, y));
+        System.out.println(x.mul(x, y));
+        System.out.println(x.div(x, y));
     }
 }
