@@ -29,8 +29,13 @@ public class Animal {
     }
 
     public String toString() {
-        return ("I am " + getKind() + ",eat " + getFoodKind() + " " + calculateFoodWeight());
+        return ("I am " + getKind() + ",eat " + getFoodKind());
     }
+    public String toStringFull() {
+        String s = ("");
+        System.out.println("I am " + getKind() + ",eat " + getFoodKind() + " " + calculateFoodWeight());
+        return s;
+}
 
     public double getWeight() {
         double w = 1.0;
@@ -50,5 +55,6 @@ public class Animal {
     public static void main(String[] args) {
         Animal A1 = new Animal(12.3);
         System.out.println(A1);
+        A1.toStringFull();
     }
 }
