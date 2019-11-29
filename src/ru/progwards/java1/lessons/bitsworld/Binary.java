@@ -24,7 +24,7 @@ public class Binary {
 
         }
         public static void main (String[]args){
-            Binary bin = new Binary((byte) 128);
+            Binary bin = new Binary((byte) 127);
             System.out.println(bin);
 
         }
