@@ -16,12 +16,12 @@ public class Eratosthenes {
     }
     private void sift(){
         int i = 2; int j = 2;
-        for (i = 2; i < (N - 1); i++) {
+        for (i = 2; i < N ; i++) {
             for (j = 2; j < i; j++){
-                 if ((i % j) == 0) {
-                     sieve[i] = false;
-                     break;
-                 }
+                if ((i % j) == 0) {
+                    sieve[i] = false;
+                    break;
+                }
             }
         }
     }
@@ -30,7 +30,7 @@ public class Eratosthenes {
     }
 
     public static void main(String[] args) {
-        Eratosthenes E1 = new Eratosthenes(1000);
-        System.out.println(E1.isSimple(347));
+        Eratosthenes E1 = new Eratosthenes(300);
+        System.out.println(E1.isSimple(299));
     }
 }
