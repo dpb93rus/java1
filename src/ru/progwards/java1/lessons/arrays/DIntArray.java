@@ -33,7 +33,27 @@ public class DIntArray {
         return null;
     }
         public static void main(String[] args) {
-
+            DIntArray a = new DIntArray();
+           // a.add (19);
+           // a.add (-3);
+           // a.add (-49);
+           // a.add (-94);
+           // a.add (-25);
+           // a.add (31);
+           // a.add (-40);
+           // a.add (59);
+           // a.add (-31);
+           // a.add (35);
+           // a.add (6);
+           // a.add (-7);
+           // a.add (-54);
+           // a.add (-46);
+            //a.add (24);
+            //a.add (40);
+           // a.atInsert(2,10000);
+            //a.atDelete (3);
+            //a.at(0);
+            //a.toString();
     }
 
 }
