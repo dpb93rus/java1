@@ -26,7 +26,7 @@ public class DIntArray {
     }
     public int at(int pos) {
         System.out.println(a[pos]);
-        return 0;
+        return a[pos] ;
     }
     public String toString() {
         System.out.println(Arrays.toString(a));
