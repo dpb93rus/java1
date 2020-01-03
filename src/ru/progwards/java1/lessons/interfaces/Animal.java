@@ -53,6 +53,8 @@ public class Animal implements FoodCompare {
     }
     @Override
      public boolean equals(Object anObject){
+        if (this.getClass() != anObject.getClass())
+            return false;
         if (this.getWeight() == ((Animal)anObject).getWeight()) {
             return true;
         }
@@ -62,15 +64,14 @@ public class Animal implements FoodCompare {
         switch (getFoodKind()) {
             case HAY: return 20;
             case CORN: return 50;
-            case UNKNOWN: return 0;
+            default: return 0;
         }
-        return 0;
     }
     public double getFoodPrice(){
         return calculateFoodWeight() * getFood1kgPrice();
     }
     public int compareFoodPrice(Animal animal){
-        return Double.compare (this.getFood1kgPrice(), animal.getFood1kgPrice());
+        return Double.compare (this.getFoodPrice(), animal.getFoodPrice());
     }
 
 
