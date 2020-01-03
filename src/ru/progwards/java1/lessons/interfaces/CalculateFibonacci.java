@@ -21,8 +21,8 @@ public class CalculateFibonacci {
         lastFibo.n = n;
         return y;
     }
-    public int getLastFibo() {
-        return lastFibo.fibo;
+    public CacheInfo getLastFibo() {
+        return lastFibo;
     }
     public void clearLastFibo() {
         lastFibo = null;
