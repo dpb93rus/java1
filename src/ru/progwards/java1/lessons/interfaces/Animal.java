@@ -55,7 +55,7 @@ public class Animal implements FoodCompare {
      public boolean equals(Object anObject){
         if (this.getClass() != anObject.getClass())
             return false;
-        if (this.getWeight() == ((Animal)anObject).getWeight()) {
+        if ((this.getWeight()) == ((Animal)anObject).getWeight()) {
             return true;
         }
         else {return  false;}
