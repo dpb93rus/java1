@@ -8,4 +8,5 @@ public interface CompareWeight {
     }
 
     public CompareResult compareWeight(CompareWeight smthHasWeigt);
+    public double getWeight();
 }

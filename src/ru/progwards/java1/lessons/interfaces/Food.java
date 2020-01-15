@@ -3,7 +3,7 @@ package ru.progwards.java1.lessons.interfaces;
 import java.util.Objects;
 
 public class Food implements CompareWeight {
-    int weight;
+    private int weight;
     Food (int weight){
         this.weight = weight;
     }
@@ -11,21 +11,18 @@ public class Food implements CompareWeight {
         return weight;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Food food = (Food) o;
-        return weight == food.weight;
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(weight);
-    }
+//    public boolean eZqualsZ(Object o) {
+
+
+
 
     @Override
     public CompareResult compareWeight(CompareWeight smthHasWeigt) {
-return null;
+        double weight1 = getWeight();
+        double weight2 = smthHasWeigt.getWeight();
+        if (weight1 == weight2) return CompareResult.EQUAL;
+        if (weight1 < weight2) return CompareResult.LESS;
+        return CompareResult.GREATER;
     }
 }

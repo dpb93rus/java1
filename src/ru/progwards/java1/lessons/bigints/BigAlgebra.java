@@ -32,7 +32,7 @@ public class BigAlgebra {
 
     public static void main(String[] args) {
 
-        System.out.println (fastPow(new BigDecimal("444"), 0));
+        System.out.println (fastPow(new BigDecimal("54564564565465475474"), 45));
         System.out.println (fibonacci(9));
     }
 

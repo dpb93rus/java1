@@ -1,9 +1,19 @@
 package ru.progwards.java1.lessons.interfaces;
 
-public class Animal implements FoodCompare {
+public class Animal implements FoodCompare, CompareWeight  {
     public Animal(double weight) {
         double w = getWeight();
     }
+
+    @Override
+    public CompareResult compareWeight(CompareWeight smthHasWeigt) {
+        double weight1 = getWeight();
+        double weight2 = smthHasWeigt.getWeight();
+        if (weight1 == weight2) return CompareResult.EQUAL;
+        if (weight1 < weight2) return CompareResult.LESS;
+        return CompareResult.GREATER;
+    }
+
     enum AnimalKind {
         ANIMAL,
         COW,
@@ -70,6 +80,7 @@ public class Animal implements FoodCompare {
     public double getFoodPrice(){
         return calculateFoodWeight() * getFood1kgPrice();
     }
+
     public int compareFoodPrice(Animal animal){
         return Double.compare (this.getFoodPrice(), animal.getFoodPrice());
     }
