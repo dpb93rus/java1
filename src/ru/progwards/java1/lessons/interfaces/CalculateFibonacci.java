@@ -5,7 +5,8 @@ public class CalculateFibonacci {
 
     // расчет числа фибоначчи по его порядковому номеру
     public static int fiboNumber(int n) {
-        if (lastFibo.n == n)
+
+        if (lastFibo != null && lastFibo.n == n)
             return lastFibo.fibo;
         int x = 0;
         int y = 1;
@@ -34,7 +35,7 @@ public class CalculateFibonacci {
     public static void main(String[] args) {
 
 
-        }
+    }
 
 
-        }
+}

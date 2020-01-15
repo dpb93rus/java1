@@ -14,5 +14,4 @@ abstract public class AbsInteger {
 
 
     }
-    }
-}
+
