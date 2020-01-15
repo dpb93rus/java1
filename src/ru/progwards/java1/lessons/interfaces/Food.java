@@ -7,7 +7,7 @@ public class Food implements CompareWeight {
     Food (int weight){
         this.weight = weight;
     }
-    public int getWeight(){
+    public double getWeight(){
         return weight;
     }
 
