@@ -1,7 +1,7 @@
 package ru.progwards.java1.lessons.interfaces;
 
 public class CalculateFibonacci {
-    static CacheInfo lastFibo;
+    static CacheInfo lastFibo = new CacheInfo();
 
     // расчет числа фибоначчи по его порядковому номеру
     public static int fiboNumber(int n) {
