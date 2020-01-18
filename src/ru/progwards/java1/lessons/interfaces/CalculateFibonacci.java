@@ -26,7 +26,7 @@ public class CalculateFibonacci {
         return lastFibo;
     }
     public static void clearLastFibo() {
-        lastFibo = new CacheInfo();
+        lastFibo = null;
     }
     public static class CacheInfo {
         public int n; //порядковый номер числа фибоначчи
