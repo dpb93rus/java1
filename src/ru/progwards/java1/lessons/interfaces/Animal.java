@@ -1,8 +1,9 @@
 package ru.progwards.java1.lessons.interfaces;
 
 public class Animal implements FoodCompare, CompareWeight  {
+    double weight = 0.0;
     public Animal(double weight) {
-        double w = getWeight();
+        this.weight = weight;
     }
 
     @Override
@@ -48,8 +49,7 @@ public class Animal implements FoodCompare, CompareWeight  {
 }
 
     public double getWeight() {
-        double w = 1.0;
-        return w;
+        return this.weight;
     }
 
     public double getFoodCoeff() {
@@ -63,12 +63,9 @@ public class Animal implements FoodCompare, CompareWeight  {
     }
     @Override
      public boolean equals(Object anObject){
-        if (this.getClass() != anObject.getClass())
-            return false;
-        if ((this.getWeight()) != ((Animal)anObject).getWeight()) {
-            return false;
-        }
-        else {return  true;}
+        if (this.getClass() != anObject.getClass()) return false;
+        if ((this.getWeight()) != ((Animal)anObject).getWeight())  return false;
+        else return  true;
         }
     public double getFood1kgPrice() {
         switch (getFoodKind()) {

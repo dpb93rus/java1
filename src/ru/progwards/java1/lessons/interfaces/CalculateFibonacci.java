@@ -6,7 +6,7 @@ public class CalculateFibonacci {
     // расчет числа фибоначчи по его порядковому номеру
     public static int fiboNumber(int n) {
 
-        if (lastFibo != null && lastFibo.n == n)
+        if ( lastFibo.n == n)
             return lastFibo.fibo;
         int x = 0;
         int y = 1;
@@ -26,14 +26,16 @@ public class CalculateFibonacci {
         return lastFibo;
     }
     public static void clearLastFibo() {
-        lastFibo = null;
+        lastFibo = new CacheInfo();
     }
     public static class CacheInfo {
         public int n; //порядковый номер числа фибоначчи
         public int fibo; //число фибоначи с номером n
     }
     public static void main(String[] args) {
-
+        System.out.println(fiboNumber(6));
+        System.out.println(fiboNumber(6));
+        clearLastFibo();
 
     }
 
