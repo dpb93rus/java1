@@ -10,9 +10,7 @@ public class ShortInteger extends AbsInteger {
     }
     @Override
     public String toString() {
-        return "ShortInteger{" +
-                "n=" + n +
-                '}';
+        return String.valueOf(n);
     }
 }
 

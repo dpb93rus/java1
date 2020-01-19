@@ -7,13 +7,12 @@ public class ByteInteger extends AbsInteger {
 
     ByteInteger(byte n) {
         super((long) n);
+
     }
 
     @Override
     public String toString() {
-        return "ByteInteger{" +
-                "n=" + n +
-                '}';
+        return String.valueOf(n);
     }
 
 }
