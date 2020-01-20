@@ -23,8 +23,8 @@ public class AbsInteger {
                 '}';
     }
     public static void main(String[] args) {
-        AbsInteger A1 = new AbsInteger(44L);
-        AbsInteger A2 = new AbsInteger(4L);
+        AbsInteger A1 = new AbsInteger(4765L);
+        AbsInteger A2 = new AbsInteger(455L);
         System.out.println(add(A1,A2));
     }
 }
