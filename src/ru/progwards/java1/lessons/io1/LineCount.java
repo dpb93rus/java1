@@ -8,17 +8,17 @@ public class LineCount {
         int i = 0;
         try (FileReader reader = new FileReader(fileName);
              Scanner scanner = new Scanner(reader)) {
-            do {
+            while (scanner.hasNextLine()) {
                 String s = scanner.nextLine();
-                if (s == "") i++;
-                scanner.nextLine();
+                if ("".equals(s))
+                    i++;
             }
-            while (scanner.hasNextLine());
+
         } catch (Exception e) {
             return -1;
         }
 
         return i;
     }
-}
 
+}
