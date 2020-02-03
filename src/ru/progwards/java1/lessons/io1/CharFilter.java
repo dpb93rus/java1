@@ -15,41 +15,52 @@ public class CharFilter {
             e.printStackTrace();
         }
         Scanner scanner = new Scanner(reader);
-        FileWriter writer = null;
-        try {
-            writer = new FileWriter(outFileName, true);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         StringBuffer S = new StringBuffer(scanner.nextLine());
-        for (int n = 1; n < S.length(); n++) {
-            if (((S.charAt(n)) + "").equals(filter)) {
-                S.deleteCharAt(n);
-                n--;
+        StringBuffer D = new StringBuffer("");
+        try {
+            FileWriter writer = new FileWriter(outFileName, true);
+                while (scanner.hasNextLine()) {
+                    for (int n = 0; n < S.length(); n++) {
+                        int T = S.length();
+                        for (int c = 0; c < filter.length(); c++) {
+                            if (((S.charAt(n)) + "").equals(filter.charAt(c) + "")) {
+                                S.deleteCharAt(n);
+                            }
+                        }
+                        if (T!=S.length()) n--;
+                    }
+                    D.append(S);
+                    D.append("\n");
+                    S = new StringBuffer(scanner.nextLine());
+                }
+
+            for (int n = 0; n < S.length(); n++) {
+                int T = S.length();
+                for (int c = 0; c < filter.length(); c++) {
+                    if (((S.charAt(n)) + "").equals(filter.charAt(c) + "")) {
+                        S.deleteCharAt(n);
+                    }
+                }
+                if (T!=S.length()) n--;
+            }
+            D.append(S);
+            try {
+                writer.write(String.valueOf(D));
+            } finally {
+
+                reader.close();
+                scanner.close();
+                writer.close();
+            }
+        } catch (IOException e){
+                System.out.println(e.getMessage());
             }
         }
-        try {
-            writer.write(String.valueOf(S));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        scanner.close();
-        try {
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+
+
+        public static void main(String[] args) {
+        filterFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\fileName.txt",
+                "C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\file out", " оеаи");
     }
-
-
-//    public static void main(String[] args) {
-//        filterFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\fileName.txt",
-//                "C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\file out"," ");
-//    }
 }
