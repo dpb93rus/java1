@@ -19,7 +19,7 @@ public class Coder {
             D.append(S);
             D.append("\n");
         }
-        D.deleteCharAt(D.length());
+        D.deleteCharAt(D.length()-1);
         try {
             FileWriter writer = new FileWriter(outFileName, true);
             for (int n = 0; n < D.length(); n++) {
@@ -27,7 +27,6 @@ public class Coder {
                 D.deleteCharAt(n);
                 D.insert(n, code[(int) symbol]);
             }
-
             try {
                 writer.write(String.valueOf(D));
             } finally {
@@ -45,4 +44,14 @@ public class Coder {
             }
         }
     }
+
+    public static void main(String[] args) {
+        String a = "abcdefghhjk";
+        for (int i = 1; i <= 8; i ++) {
+            a+=a;
+        }
+        codeFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\fileName.txt",
+                "C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\file out", a.toCharArray(),
+                "C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\file log"      );
+}
 }
