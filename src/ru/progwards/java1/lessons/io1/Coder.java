@@ -45,13 +45,13 @@ public class Coder {
         }
     }
 
-    public static void main(String[] args) {
-        String a = "abcdefghhjk";
-        for (int i = 1; i <= 8; i ++) {
-            a+=a;
-        }
-        codeFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\fileName.txt",
-                "C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\file out", a.toCharArray(),
-                "C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\file log"      );
-}
+//    public static void main(String[] args) {
+//        String a = "abcdefghhjk";
+//        for (int i = 1; i <= 8; i ++) {
+//            a+=a;
+//        }
+//        codeFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\fileName.txt",
+//                "C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\file out", a.toCharArray(),
+//                "C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\file log"      );
+//}
 }
