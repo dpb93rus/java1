@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Coder {
 
-    public static void codeFile(String inFileName, String outFileName, char[] code, String logName) {
+    public static void codeFile(String inFileName, String outFileName, char[] code, String logName) throws IOException {
         FileReader reader = null;
         Throwable T = new Throwable();
         try {
@@ -19,7 +19,7 @@ public class Coder {
             D.append(S);
             D.append("\n");
         }
-        D.deleteCharAt(D.length()-1);
+        if (D.length() > 0) D.deleteCharAt(D.length()-1);
         try {
             FileWriter writer = new FileWriter(outFileName, true);
             for (int n = 0; n < D.length(); n++) {
@@ -45,13 +45,18 @@ public class Coder {
         }
     }
 
-//    public static void main(String[] args) {
-//        String a = "abcdefghhjk";
-//        for (int i = 1; i <= 8; i ++) {
-//            a+=a;
-//        }
-//        codeFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\fileName.txt",
-//                "C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\file out", a.toCharArray(),
-//                "C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\file log"      );
-//}
+    public static void main(String[] args) {
+        String a = "abcdefghhjk";
+        for (int i = 1; i <= 8; i ++) {
+            a+=a;
+        }
+        try {
+        codeFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\fileName.txt",
+                "C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\file out", a.toCharArray(),
+                "C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\file log"      );
+} catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+}
 }
