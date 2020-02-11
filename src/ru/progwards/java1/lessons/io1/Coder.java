@@ -9,22 +9,30 @@ public class Coder {
         try {
             FileReader reader = null;
             reader = new FileReader(inFileName);
-            Scanner scanner = new Scanner(reader);
+////            Scanner scanner = new Scanner(reader);
+////            StringBuffer D = new StringBuffer("");
+////            while (scanner.hasNextLine()) {
+////                StringBuffer S = new StringBuffer(scanner.nextLine());
+////                D.append(S);
+////                D.append("\n");
+//            }
+//            if (D.length() > 0) D.deleteCharAt(D.length() - 1);
+
+
             StringBuffer D = new StringBuffer("");
-            while (scanner.hasNextLine()) {
-                StringBuffer S = new StringBuffer(scanner.nextLine());
-                D.append(S);
+
+            for (int c; (c = reader.read()) != -1; ) {
+                D.append(code[(int) c]);
             }
-            if (D.length() > 0) D.deleteCharAt(D.length() - 1);
 
             FileWriter writer = new FileWriter(outFileName, true);
-            for (int n = 0; n < D.length(); n++) {
-                char symbol = D.charAt(n);
-                D.deleteCharAt(n);
-                D.insert(n, code[(int) symbol]);
-            }
+//            for (int n = 0; n < D.length(); n++) {
+//                char symbol = D.charAt(n);
+//                D.deleteCharAt(n);
+//                D.insert(n, code[(int) symbol]);
+//            }
             try {
-                writer.write(String.valueOf(D));
+                writer.write(D.toString());
             } finally {
 
                 try {
@@ -33,17 +41,12 @@ public class Coder {
                     throw t;
                 } finally {
 
+
                     try {
-                        scanner.close();
+                        reader.close();
                     } catch (Throwable t) {
                         throw t;
-                    } finally {
 
-                        try {
-                            reader.close();
-                        } catch (Throwable t) {
-                            throw t;
-                        }
                     }
                 }
             }
@@ -68,7 +71,7 @@ public class Coder {
             a += a;
         }
         try {
-            codeFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\fileName1.txt",
+            codeFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\fileName.txt",
                     "C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\file out", a.toCharArray(),
                     "C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\file log");
         } catch (Exception ex) {
