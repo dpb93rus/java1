@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Coder {
 
-    public static void codeFile(String inFileName, String outFileName, char[] code, String logName) throws IOException {
+    public static void codeFile(String inFileName, String outFileName, char[] code, String logName) {
         try {
             FileReader reader = null;
             reader = new FileReader(inFileName);
@@ -67,7 +67,7 @@ public class Coder {
             codeFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\fileName.txt",
                     "C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\file out", a.toCharArray(),
                     "C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\file log");
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
 
