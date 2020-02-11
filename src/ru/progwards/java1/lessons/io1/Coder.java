@@ -52,6 +52,11 @@ public class Coder {
             try {
                 FileWriter writer = new FileWriter(logName, true);
                 writer.write(e.getMessage());
+                try {
+                    writer.close();
+                } catch (Throwable t) {
+                    t.printStackTrace();
+                }
             } catch (Throwable w) {
                 System.out.println(w.getMessage());
             }
@@ -64,7 +69,7 @@ public class Coder {
             a += a;
         }
         try {
-            codeFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\fileName.txt",
+            codeFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\fileName1.txt",
                     "C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\file out", a.toCharArray(),
                     "C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\file log");
         } catch (Exception ex) {
