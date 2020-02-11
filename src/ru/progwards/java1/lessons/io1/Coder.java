@@ -14,7 +14,6 @@ public class Coder {
             while (scanner.hasNextLine()) {
                 StringBuffer S = new StringBuffer(scanner.nextLine());
                 D.append(S);
-                D.append("\n");
             }
             if (D.length() > 0) D.deleteCharAt(D.length() - 1);
 
