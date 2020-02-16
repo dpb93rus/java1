@@ -7,46 +7,24 @@ public class Coder {
 
     public static void codeFile(String inFileName, String outFileName, char[] code, String logName) {
         try {
-            FileReader reader = null;
-            reader = new FileReader(inFileName);
-////            Scanner scanner = new Scanner(reader);
-////            StringBuffer D = new StringBuffer("");
-////            while (scanner.hasNextLine()) {
-////                StringBuffer S = new StringBuffer(scanner.nextLine());
-////                D.append(S);
-////                D.append("\n");
-//            }
-//            if (D.length() > 0) D.deleteCharAt(D.length() - 1);
-
-
+            FileReader reader = new FileReader(inFileName);
             StringBuffer D = new StringBuffer("");
-
             for (int c; (c = reader.read()) != -1; ) {
                 D.append(code[(int) c]);
             }
-
             FileWriter writer = new FileWriter(outFileName, true);
-//            for (int n = 0; n < D.length(); n++) {
-//                char symbol = D.charAt(n);
-//                D.deleteCharAt(n);
-//                D.insert(n, code[(int) symbol]);
-//            }
             try {
                 writer.write(D.toString());
             } finally {
-
                 try {
                     writer.close();
                 } catch (Throwable t) {
                     throw t;
                 } finally {
-
-
                     try {
                         reader.close();
                     } catch (Throwable t) {
                         throw t;
-
                     }
                 }
             }
@@ -57,14 +35,14 @@ public class Coder {
                 try {
                     writer.close();
                 } catch (Throwable t) {
-                    t.printStackTrace();
+//                    t.printStackTrace();
+                    throw t;
                 }
             } catch (Throwable w) {
                 System.out.println(w.getMessage());
             }
         }
     }
-
     public static void main(String[] args) {
         String a = "abcdefghhjk";
         for (int i = 1; i <= 8; i++) {
@@ -77,6 +55,5 @@ public class Coder {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-
     }
 }
