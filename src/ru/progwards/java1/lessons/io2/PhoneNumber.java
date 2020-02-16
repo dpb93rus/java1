@@ -1,53 +1,45 @@
-//package ru.progwards.java1.lessons.io2;
-//import
-//
-//import java.text.DecimalFormat;
-//import java.text.MessageFormat;
-//
-//public class PhoneNumber {
-//    public static String format(String phone) throws Exception {
-//        final DecimalFormat phoneFormatD = new DecimalFormat("0000000000");
-//        final MessageFormat phoneFormatM = new MessageFormat("({0}){1}-{2}");
-//
-//            double p = 0;
-//            if (phone instanceof String)
-//                p = Double.valueOf((String) phone);
-//
-//            if (p == 0 || String.valueOf(p) == "" || String.valueOf(p).length() < 7)
-//                throw new Exception("");
-//
-//            String str = phoneFormatD.format(p);
-//
-//            String num = str.length() > 10 ? str.substring(0, str.length() - 10) : "";
-//            str = str.length() > 10 ? str.substring(str.length() - 10, str.length()) : str;
-//
-//            String[] arr = {
-//                    (str.charAt(0) != '0') ? str.substring(0, 3) : (str.charAt(1) != '0') ? str.substring(1, 3) : str.substring(2, 3),
-//                    str.substring(3, 6),
-//                    str.substring(6)
-//            };
-//            String r = phoneFormatM.format(arr);
-//            r = (r.contains("(0)")) ? r.replace("(0)", "") : r;
-//            r = (num != "") ? ("+" + num + "" + r) : r;
-//            return (r);
-//        }
-//
-//    public static void main(String[] args) {
-//        try {
-//            System.out.println(format("8991231234"));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        try {
-//            System.out.println(format("78991231234"));
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
-//    }
-//
-//
-////    сначала чистим входящие данные и оставляем только цифры (было в лекции)
-////    проверяем на длину и выбрасываем ошибку
-////    проверяем на длину и берем 10 символов (чтобы откинуть 8) - я брал с конца
-////        добавляем +7 и т.д.
+package ru.progwards.java1.lessons.io2;
+
+
+import java.io.IOException;
+
+public class PhoneNumber {
+    public static class WrongNumber extends RuntimeException {
+    public WrongNumber () {
+        super("Wrong Format Phone");
+    }
+    @Override
+        public String getMessage() {
+        return super.getMessage();
+    }
+    }
+    public static String format(String phone)  {
+         if (phone.isEmpty()) {
+             throw new WrongNumber();
+         }
+
+
+        StringBuffer s = new StringBuffer();   // Create StringBuffer s
+        char[] c = phone.toCharArray();       // Create Array char
+        int l = c.length;                      // l  -   length of Array
+        for (int n = 0; n < l; n++) {
+            if (Character.isDigit(c[n])) s.append(c[n]);
+        }
+     if ((s.length()<10) | (s.length()>11)) {
+         throw new WrongNumber();
+     }
+
+        if ((s.length() == 11)) s.delete(0, 1);
+        s.insert(0, "+7"); s.insert(2, "("); s.insert(6, ")"); s.insert(10, "-");
+        return s.toString();
+    }
+
+    public static void main(String[] args) {
+        try {
+            System.out.println(format("89128-435-3"));
+        } catch (WrongNumber a) {
+            System.err.println(a.getMessage());
+        }
+    }
+}
+
