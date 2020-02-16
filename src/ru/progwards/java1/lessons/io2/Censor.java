@@ -6,7 +6,7 @@ import java.io.FileWriter;
 
 public class Censor {
 
-    public static class CensorException extends RuntimeException {
+    public static class CensorException extends Throwable {
         String info;
         String name;
 
@@ -19,7 +19,7 @@ public class Censor {
             return ("inoutFileName:" + info);
         }
     }
-        public static void censorFile(String inoutFileName, String[] obscene) {
+        public static void censorFile(String inoutFileName, String[] obscene) throws Throwable {
 //      Считывание
             StringBuffer s = new StringBuffer("");
             try (FileReader reader = new FileReader(inoutFileName)) {
@@ -47,11 +47,13 @@ public class Censor {
             }
         }
 
-        public static void main(String[] args) {
+        public static void main(String[] args) throws Throwable {
+            String A[] = new String[]{"Java", "Oracle", "Sun", "Microsystems"};
+            A = null;
             try {
-                censorFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io2\\filin1.txt", new String[]{"Java", "Oracle", "Sun", "Microsystems"});
+                censorFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io2\\filin1.txt", A);
             } catch (CensorException EX) {
-                System.out.println(EX.getMessage());
+                System.err.println(EX.getMessage());
             }
         }
     }

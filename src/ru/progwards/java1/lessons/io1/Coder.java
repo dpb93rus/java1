@@ -12,7 +12,7 @@ public class Coder {
             for (int c; (c = reader.read()) != -1; ) {
                 D.append(code[(int) c]);
             }
-            FileWriter writer = new FileWriter(outFileName, true);
+            FileWriter writer = new FileWriter(outFileName);
             try {
                 writer.write(D.toString());
             } finally {
