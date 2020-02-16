@@ -1,16 +1,15 @@
 package ru.progwards.java1.lessons.io2;
 
-import java.io.*;
 import java.io.FileReader;
 import java.io.FileWriter;
 
 public class Censor {
 
-    public static class CensorException extends Throwable {
+    public static class CensorException extends RuntimeException {
         String info;
         String name;
 
-        public CensorException(Exception original) {
+        public CensorException(Throwable original) {
             info = original.getMessage();
             name = original.getLocalizedMessage();
         }
@@ -26,7 +25,7 @@ public class Censor {
                 for (int c; (c = reader.read()) != -1; ) {
                     s.append((char) c);
                 }
-            } catch (IOException EX) {
+            } catch (Throwable EX) {
                 throw new CensorException(EX);
             }
 //      Формируем выходной текст
@@ -42,16 +41,15 @@ public class Censor {
             }
             try (FileWriter writer = new FileWriter(inoutFileName)) {
                 writer.write(s.toString());
-            } catch (IOException EX) {
+            } catch (Throwable EX) {
                 throw new CensorException(EX);
             }
         }
 
         public static void main(String[] args) throws Throwable {
             String A[] = new String[]{"Java", "Oracle", "Sun", "Microsystems"};
-            A = null;
             try {
-                censorFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io2\\filin1.txt", A);
+                censorFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io2\\filin.txt", A);
             } catch (CensorException EX) {
                 System.err.println(EX.getMessage());
             }
