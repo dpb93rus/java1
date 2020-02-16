@@ -13,14 +13,12 @@ public class Censor {
             info = original.getMessage();
             name = original.getLocalizedMessage();
         }
-
         @Override
         public String getMessage() {
             return ("inoutFileName:" + info);
         }
     }
-
-    public static void censorFile(String inoutFileName, String[] obscene) throws Throwable {
+    public static void censorFile(String inoutFileName, String[] obscene) {
 //      Считывание
         StringBuffer s = new StringBuffer("");
         try (FileReader reader = new FileReader(inoutFileName)) {
@@ -45,6 +43,17 @@ public class Censor {
             writer.write(s.toString());
         } catch (Throwable EX) {
             throw new CensorException(EX);
+        }
+    }
+
+    public static void main(String[] args)  {
+        String A[] = new String[]{"Java", "Oracle", "Sun", "Microsystems"};
+        A = null;
+        try {
+            censorFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io2\\filin.txt", A);
+        } catch (Throwable EX) {
+            new CensorException(EX);
+            System.err.println(EX.getMessage());
         }
     }
 }
