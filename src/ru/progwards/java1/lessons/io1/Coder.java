@@ -28,15 +28,15 @@ public class Coder {
                     }
                 }
             }
-        } catch (IOException e) {
+        } catch (Throwable t) {
             try {
                 FileWriter writer = new FileWriter(logName, true);
-                writer.write(e.getMessage());
+                writer.write(t.getMessage()+ "\n");
                 try {
                     writer.close();
-                } catch (Throwable t) {
+                } catch (Throwable e) {
 //                    t.printStackTrace();
-                    throw t;
+                    throw e;
                 }
             } catch (Throwable w) {
                 System.out.println(w.getMessage());
@@ -45,14 +45,15 @@ public class Coder {
     }
     public static void main(String[] args) {
         String a = "abcdefghhjk";
-        for (int i = 1; i <= 8; i++) {
+        for (int i = 1; i <= 2; i++) {
             a += a;
         }
+        char b[] = a.toCharArray();
         try {
             codeFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\fileName.txt",
-                    "C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\file out", a.toCharArray(),
+                    "C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\file out", b,
                     "C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io1\\logName");
-        } catch (Exception ex) {
+        } catch (Throwable ex) {
             System.out.println(ex.getMessage());
         }
     }
