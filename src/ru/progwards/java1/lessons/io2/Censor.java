@@ -11,11 +11,15 @@ public class Censor {
         String name;
 
         public CensorException(Exception original) {
-            this.info = original.getMessage();
-            this.name = this.getMessage();
+            info = original.getMessage();
+            name = original.getLocalizedMessage();
         }
-
-        public static void censorFile(String inoutFileName, String[] obscene) throws IOException {
+        @Override
+        public String getMessage() {
+            return ("inoutFileName:" + info);
+        }
+    }
+        public static void censorFile(String inoutFileName, String[] obscene) {
 //      Считывание
             StringBuffer s = new StringBuffer("");
             try (FileReader reader = new FileReader(inoutFileName)) {
@@ -23,7 +27,7 @@ public class Censor {
                     s.append((char) c);
                 }
             } catch (IOException EX) {
-                throw EX;
+                throw new CensorException(EX);
             }
 //      Формируем выходной текст
             for (int c = 0; c < obscene.length; c++) {
@@ -39,15 +43,16 @@ public class Censor {
             try (FileWriter writer = new FileWriter(inoutFileName)) {
                 writer.write(s.toString());
             } catch (IOException EX) {
+                throw new CensorException(EX);
             }
         }
 
         public static void main(String[] args) {
             try {
-                censorFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io2\\filin.txt", new String[]{"Java", "Oracle", "Sun", "Microsystems"});
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
+                censorFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io2\\filin1.txt", new String[]{"Java", "Oracle", "Sun", "Microsystems"});
+            } catch (CensorException EX) {
+                System.out.println(EX.getMessage());
             }
         }
     }
-}
+
