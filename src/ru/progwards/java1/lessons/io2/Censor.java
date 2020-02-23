@@ -9,9 +9,9 @@ public class Censor {
         String info;
         String name;
 
-        public CensorException(Throwable original) {
+        public CensorException(Throwable original, String fileName) {
             info = original.getMessage();
-            name = original.getLocalizedMessage();
+            name = fileName;
         }
         @Override
         public String getMessage() {
@@ -26,7 +26,7 @@ public class Censor {
                 s.append((char) c);
             }
         } catch (Throwable EX) {
-            throw new CensorException(EX);
+            throw new CensorException(EX, inoutFileName);
         }
 //      Формируем выходной текст
         for (int c = 0; c < obscene.length; c++) {
@@ -42,17 +42,17 @@ public class Censor {
         try (FileWriter writer = new FileWriter(inoutFileName)) {
             writer.write(s.toString());
         } catch (Throwable EX) {
-            throw new CensorException(EX);
+            throw new CensorException(EX,inoutFileName);
         }
     }
 
     public static void main(String[] args)  {
         String A[] = new String[]{"Java", "Oracle", "Sun", "Microsystems"};
-        A = null;
+        String fileName = "C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io2\\filin.txt";
         try {
-            censorFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\io2\\filin.txt", A);
+            censorFile(fileName, A);
         } catch (Throwable EX) {
-            new CensorException(EX);
+            new CensorException(EX, fileName);
             System.err.println(EX.getMessage());
         }
     }

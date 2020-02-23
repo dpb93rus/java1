@@ -36,7 +36,7 @@ public class PhoneNumber {
 
     public static void main(String[] args) {
         try {
-            System.out.println(format("89128-435-3"));
+            System.out.println(format("89128-467535-3"));
         } catch (WrongNumber a) {
             System.err.println(a.getMessage());
         }
