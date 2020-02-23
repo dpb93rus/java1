@@ -33,7 +33,7 @@ public class Creator {
             x.add(a);
             x.add(a*a);
             x.add(a*a*a);
-            a++;
+            a+=3;
         }
         return x;
     }
@@ -41,6 +41,6 @@ public class Creator {
     public static void main(String[] args) {
         System.out.println(fillEven(5));
         System.out.println(fillOdd(7));
-        System.out.println(fill3(30000));
+        System.out.println(fill3(5));
     }
 }
