@@ -6,15 +6,13 @@ import java.util.Collection;
 public class Finder {
     public static Collection<Integer> findMinSumPair(Collection<Integer> numbers){
         ArrayList <Integer> x = new ArrayList<>(numbers);
-        int a = 0; int b = 0; int n = 0; int c = n;int d = 1;
-        while (n < (x.size()-2)) {
-        a = x.get(n); b = x.get(n+1);
-        if ((x.get(c) + x.get(d)) > (b + x.get(n+2))) {
-            a = b; b = x.get(n+2); c=d; d=d+1;
-            }
-            n++;
+        int a = 0; int n = 0; int z = 0;
+        if ((x.get(n + 1) + x.get(n + 2)) < (x.get(n) + x.get(n + 1))) z = n + 1;
+        else z = n;
+        for (n = 1; n < x.size()-2; n++) {
+            if ((x.get(n + 1) + x.get(n + 2)) < (x.get(z) + x.get(z + 1))) z = n + 1;
         }
-        x.clear(); x.add(c); x.add(d);
+        x.clear(); x.add(z); x.add(z+1);
         return x;
     }
 
@@ -67,7 +65,7 @@ public class Finder {
           ArrayList <Integer> z = new ArrayList<>();
           ArrayList<String> q = new ArrayList();
           q.add("wwwwww");q.add("zzzzz");q.add("zzzzz");q.add("zzzzz");q.add("wwwwww");q.add("t");q.add("u");q.add("u");q.add("u");q.add("oooio");q.add("wwwwww");
-          z.add(1);z.add(2);z.add(11);z.add(5);z.add(3);z.add(6);z.add(4);z.add(7);z.add(55);z.add(9);
+          z.add(-6);z.add(-64);z.add(80);z.add(-33);z.add(0);z.add(-97);z.add(52);z.add(23);z.add(-82);z.add(-8);z.add(-80);z.add(-31);z.add(52);z.add(-38);z.add(19);z.add(84);z.add(-74);z.add(34);
           System.out.println(findMinSumPair(z));
           System.out.println(findLocalMax(z));
           System.out.println(findSequence(z));
