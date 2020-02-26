@@ -21,7 +21,7 @@ public class Finder {
     public static Collection<Integer> findLocalMax(Collection<Integer> numbers){
         ArrayList <Integer> x = new ArrayList<>(numbers);
         ArrayList <Integer> y = new ArrayList<>();
-        for (int n = 1; n < (x.size()-2); n++) {
+        for (int n = 1; n < (x.size()-1); n++) {
             if (((x.get(n)) > (x.get(n-1))) & ((x.get(n)) > (x.get(n+1))))
                 y.add(x.get(n));
         }
@@ -67,7 +67,7 @@ public class Finder {
           ArrayList <Integer> z = new ArrayList<>();
           ArrayList<String> q = new ArrayList();
           q.add("wwwwww");q.add("zzzzz");q.add("zzzzz");q.add("zzzzz");q.add("wwwwww");q.add("t");q.add("u");q.add("u");q.add("u");q.add("oooio");q.add("wwwwww");
-          z.add(1);z.add(2);z.add(11);z.add(5);z.add(3);z.add(6);z.add(4);z.add(7);z.add(8);z.add(9);
+          z.add(1);z.add(2);z.add(11);z.add(5);z.add(3);z.add(6);z.add(4);z.add(7);z.add(55);z.add(9);
           System.out.println(findMinSumPair(z));
           System.out.println(findLocalMax(z));
           System.out.println(findSequence(z));
