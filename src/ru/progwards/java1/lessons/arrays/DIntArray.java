@@ -6,7 +6,8 @@ public class DIntArray {
     DIntArray () {
     }
     public void add(int num){
-        int [] b = new int [a.length+1];
+        int [] b;
+         b = new int [a.length+1];
         System.arraycopy(a , 0 , b , 0, (a.length));
         b[b.length-1] = num;
         a = b;

@@ -32,5 +32,7 @@ public class ArrayIterator<T> implements Iterator<T> {
         Integer[] A = {12, 1, 214, 3242, 4, 234, 24, 2, 4, 34, 432, 4, 23, 42, 43, 432, 432, 243, 4322, 43, 432,};
         ArrayIterator<Integer> iterator = new ArrayIterator<>(A);
         System.out.println(iterator.hasNext());
+        int[][] B = {{12, 1}, {214, 3242},{ 4, 8, 234,8}, {2, 4}};
+        System.out.println(B[2].length);
     }
 }
