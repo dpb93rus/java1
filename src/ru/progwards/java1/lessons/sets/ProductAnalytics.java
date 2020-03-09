@@ -68,8 +68,9 @@ public class ProductAnalytics {
         for (Shop temp: shops) {
             if (sumduble.isEmpty()) sumduble = new HashSet(temp.getProducts());
             HashSet res1 = new HashSet(temp.getProducts());
-            sumduble.add(intersection(res1,res));
             res=symDifference(res,res1);
+            sumduble.add(intersection(res1,res));
+
         }
         res.removeAll(sumduble);
         pr.retainAll(res);
