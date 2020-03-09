@@ -64,10 +64,14 @@ public class ProductAnalytics {
     public Set<Product> existOnlyInOne() {
         HashSet pr = new HashSet(this.products);
         HashSet res = new HashSet();
+        HashSet sumduble = new HashSet();
         for (Shop temp: shops) {
+            if (sumduble.isEmpty()) sumduble = new HashSet(temp.getProducts());
             HashSet res1 = new HashSet(temp.getProducts());
+            sumduble.add(intersection(res1,res));
             res=symDifference(res,res1);
         }
+        res.removeAll(sumduble);
         pr.retainAll(res);
         return pr;
     }
