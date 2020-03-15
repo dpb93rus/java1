@@ -13,4 +13,8 @@ public Shop(List<Product> products){
 public List<Product> getProducts(){
     return this.products;
 }
+
+public String toString() {
+    return this.getProducts().toString();
+}
 }
