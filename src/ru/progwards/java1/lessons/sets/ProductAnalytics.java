@@ -73,7 +73,7 @@ public String toString() {
                     c = 0;
 
             }
-
+Integer a = 5;
 //        {HashSet res = new HashSet();
 //        HashSet sumdouble = new HashSet();
 //        for (Shop temp: shops) {
@@ -90,28 +90,48 @@ public String toString() {
 
     public static void main(String[] args) {
         ArrayList <Product> prod = new ArrayList () ;
-        Product g1 = new Product("art1"); Product g2 = new Product("art2"); Product g3 = new Product("art3"); Product g4 = new Product("art4"); Product g5 = new Product("art5");
-        Product g6 = new Product("art6"); Product g7 = new Product("art7"); Product g8 = new Product("art8"); Product g9 = new Product("art9"); Product g10 = new Product("art10");
-        prod.add (g1);prod.add (g2);prod.add (g3);prod.add (g4);prod.add (g5);prod.add (g6);prod.add (g7);prod.add (g8);prod.add (g9);prod.add (g10);
-        Shop A = new Shop(new ArrayList(Set.of(g2,g3,g4,g7,g8))); Shop B = new Shop(new ArrayList(Set.of(g2,g3,g5,g6,g10))); Shop C = new Shop(new ArrayList(Set.of(g2,g3,g5,g6)));
 //        {
-//            prod.add(new Product("art1"));
-//            prod.add(new Product("art2"));
-//            prod.add(new Product("art3"));
-//            prod.add(new Product("art4"));
-//            prod.add(new Product("art5"));
-//            prod.add(new Product("art6"));
-//            prod.add(new Product("art7"));
-//            prod.add(new Product("art8"));
-//            prod.add(new Product("art9"));
-//            prod.add(new Product("art10"));
-//            Shop A = new Shop(new ArrayList(Set.of(new Product("art3"), new Product("art2"), new Product("art7"),
-//                    new Product("art8"), new Product("art4"))));
-//            Shop B = new Shop(new ArrayList(Set.of(new Product("art3"), new Product("art2"), new Product("art5"), new Product("art6"),
-//                    new Product("art10"))));
-//            Shop C = new Shop(new ArrayList(Set.of(new Product("art3"), new Product("art2"), new Product("art6"),
-//                    new Product("art5"))));
-//        }
+//            Product g1 = new Product("art1");
+//            Product g2 = new Product("art2");
+//            Product g3 = new Product("art3");
+//            Product g4 = new Product("art4");
+//            Product g5 = new Product("art5");
+//            Product g6 = new Product("art6");
+//            Product g7 = new Product("art7");
+//            Product g8 = new Product("art8");
+//            Product g9 = new Product("art9");
+//            Product g10 = new Product("art10");
+//            prod.add(g1);
+//            prod.add(g2);
+//            prod.add(g3);
+//            prod.add(g4);
+//            prod.add(g5);
+//            prod.add(g6);
+//            prod.add(g7);
+//            prod.add(g8);
+//            prod.add(g9);
+//            prod.add(g10);
+//            Shop A = new Shop(new ArrayList(Set.of(g2, g3, g4, g7, g8)));
+//            Shop B = new Shop(new ArrayList(Set.of(g2, g3, g5, g6, g10)));
+//            Shop C = new Shop(new ArrayList(Set.of(g2, g3, g5, g6)));
+//        }((
+            prod.add(new Product("art1"));
+            prod.add(new Product("art2"));
+            prod.add(new Product("art3"));
+            prod.add(new Product("art4"));
+            prod.add(new Product("art5"));
+            prod.add(new Product("art6"));
+            prod.add(new Product("art7"));
+            prod.add(new Product("art8"));
+            prod.add(new Product("art9"));
+            prod.add(new Product("art10"));
+            Shop A = new Shop(new ArrayList(Set.of(new Product("art3"), new Product("art2"), new Product("art7"),
+                    new Product("art8"), new Product("art4"))));
+            Shop B = new Shop(new ArrayList(Set.of(new Product("art3"), new Product("art2"), new Product("art5"), new Product("art6"),
+                    new Product("art10"))));
+            Shop C = new Shop(new ArrayList(Set.of(new Product("art3"), new Product("art2"), new Product("art6"),
+                    new Product("art5"))));
+
         ArrayList <Shop> ls = new ArrayList(Set.of(A,B,C));
         ProductAnalytics S = new ProductAnalytics(prod,ls);
         System.out.println(S+"\n");        System.out.println(S.existInAll()); System.out.println(S.existAtListInOne()); System.out.println(S.existOnlyInOne());System.out.println(S.notExistInShops());

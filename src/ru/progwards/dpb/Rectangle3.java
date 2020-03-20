@@ -1,23 +1,20 @@
 package ru.progwards.dpb;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class Rectangle3 {
-    Rectangle3(BigDecimal a, BigDecimal b) {
-        this.a = a;
-        this.b = b;
+    public static Set<Integer> a2set(int[] a) {
+        HashSet<Integer> res = new HashSet();
+        for (Integer t : a) {
+            res.add(t);
+        }
+        return res;
     }
 
-    public BigDecimal a;
-    public BigDecimal b;
-
-    public BigDecimal area() {
-        return a.multiply(b);
+    public static void main(String[] args) {
+        int [] b = {23,23,554,56,654,6,545,645,6,6545,45,6,54,45,445};
+        System.out.println(a2set(b));
     }
-
-    boolean rectCompare(Rectangle3 r1, Rectangle3 r2) {
-        if (((r1.a).multiply(r1.b)).equals((r2.a).multiply(r2.b)))
-            return true;
-        return false;
-    }}
-
+}

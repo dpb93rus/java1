@@ -2,7 +2,7 @@ package ru.progwards.java1.lessons.sets;
 
 import java.util.Comparator;
 
-public class Product {
+public class Product implements Comparable<Product>{
 
     private String code;
 
@@ -19,6 +19,12 @@ this.code = code;
 return this.code;
 }
 
+
+    @Override
+    public int compareTo(Product o) {
+        if (this.getCode().equals(o.getCode())) return 0;
+        return 1;
     }
+}
 
 
