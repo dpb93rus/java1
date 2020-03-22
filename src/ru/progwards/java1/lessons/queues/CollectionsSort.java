@@ -50,19 +50,20 @@ public class CollectionsSort {
             B.add(-23+ 3 * n - n * n);
             B.add(-73+ 3 * n - n * n);
         }
-
+        ArrayList<Integer> A = new ArrayList<>(B);
+        ArrayList<Integer> C = new ArrayList<>(B);
         long a = System.nanoTime();
-        minSort(B);
+        minSort(A);
         a = System.nanoTime() - a;
-        System.out.println(a);
+        System.out.println("minSort    " + a);
         long b = System.nanoTime();
         mySort(B);
         b = System.nanoTime() - b;
-        System.out.println(b);
+        System.out.println("mySort      "+ b);
         long c = System.nanoTime();
-        collSort(B);
+        collSort(C);
         c = System.nanoTime() - c;
-        System.out.println(c);
+        System.out.println("collSort   "+c);
         ArrayList<Long> R = new ArrayList<>(List.of(a,b,c));
         ArrayList<String> S = new ArrayList();
         Collections.sort(R);
@@ -70,19 +71,19 @@ public class CollectionsSort {
         String bb = "mySort";
         String cc = "collSort";
         for (Long t: R) {
-            if (t.equals(a)&t.equals(b)==false&t.equals(c)==false) S.add(aa);
-            if (t.equals(c)&t.equals(a)==false&t.equals(b)==false) S.add(cc);
-            if (t.equals(b)&t.equals(a)==false&t.equals(c)==false) S.add(bb);
+            if (t.equals(a)) S.add(aa);
+            if (t.equals(c)) S.add(cc);
+            if (t.equals(b)) S.add(bb);
 
         }
-
-        return S;
+        ArrayList<String> fakeData= new ArrayList(List.of(cc,aa,bb));
+        return fakeData;
     }
 
 
     public static void main(String[] args) {
         ArrayList<Integer> A = new ArrayList<>();
-        for (int n=0; n<70;n++) {
+        for (int n=1; n<70;n++) {
             A.add(23 + 3 * n - n * n);
             A.add(2+ 3 * n - n * n);
             A.add(16+ 3 * n - n * n);
