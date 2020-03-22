@@ -39,36 +39,40 @@ public class CollectionsSort {
     }
 
     public static Collection<String> compareSort () {
-        ArrayList<Integer> A = new ArrayList<>();
-        A.add(23);
-        A.add(2);
-        A.add(16);
-        A.add(87);
-        A.add(54);
-        A.add(0);
-        A.add(-23);
-        A.add(-73);
+        ArrayList<Integer> B = new ArrayList<>();
+        for (int n=0; n<70;n++) {
+            B.add(23 + 3 * n - n * n);
+            B.add(2+ 3 * n - n * n);
+            B.add(16+ 3 * n - n * n);
+            B.add(87+ 3 * n - n * n);
+            B.add(54+ 3 * n - n * n);
+            B.add(0+ 3 * n - n * n);
+            B.add(-23+ 3 * n - n * n);
+            B.add(-73+ 3 * n - n * n);
+        }
 
-        long a = System.currentTimeMillis();
-        minSort(A);
-        a = System.currentTimeMillis() - a;
-        long b = System.currentTimeMillis();
-        mySort(A);
-        b = System.currentTimeMillis() - a;
-        long c = System.currentTimeMillis();
-        collSort(A);
-        c = System.currentTimeMillis() - a;
-        ArrayList<Long> R = new ArrayList(List.of(a,b,c));
+        long a = System.nanoTime();
+        minSort(B);
+        a = System.nanoTime() - a;
+        System.out.println(a);
+        long b = System.nanoTime();
+        mySort(B);
+        b = System.nanoTime() - b;
+        System.out.println(b);
+        long c = System.nanoTime();
+        collSort(B);
+        c = System.nanoTime() - c;
+        System.out.println(c);
+        ArrayList<Long> R = new ArrayList<>(List.of(a,b,c));
         ArrayList<String> S = new ArrayList();
         Collections.sort(R);
         String aa = "minSort";
         String bb = "mySort";
         String cc = "collSort";
         for (Long t: R) {
-            if (t.compareTo(b)==0) {S.add(bb); continue;}
-            if (t.compareTo(c)==0) {S.add(cc); continue;}
-            if (t.compareTo(a)==0) {S.add(aa); continue;}
-
+            if (t.equals(a)&t.equals(b)==false&t.equals(c)==false) S.add(aa);
+            if (t.equals(c)&t.equals(a)==false&t.equals(b)==false) S.add(cc);
+            if (t.equals(b)&t.equals(a)==false&t.equals(c)==false) S.add(bb);
 
         }
 
@@ -78,16 +82,18 @@ public class CollectionsSort {
 
     public static void main(String[] args) {
         ArrayList<Integer> A = new ArrayList<>();
-        A.add(23);
-        A.add(2);
-        A.add(16);
-        A.add(87);
-        A.add(54);
-        A.add(0);
-        A.add(-23);
-        A.add(-73);
+        for (int n=0; n<70;n++) {
+            A.add(23 + 3 * n - n * n);
+            A.add(2+ 3 * n - n * n);
+            A.add(16+ 3 * n - n * n);
+            A.add(87+ 3 * n - n * n);
+            A.add(54+ 3 * n - n * n);
+            A.add(0+ 3 * n - n * n);
+            A.add(-23+ 3 * n - n * n);
+            A.add(-73+ 3 * n - n * n);
+        }
         System.out.println(A);
-        collSort(A);
+        mySort(A);
         System.out.println(A);
         System.out.println(compareSort());
     }
