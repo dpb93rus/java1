@@ -30,12 +30,12 @@ public class FiboMapCache {
           return y;
      }
      public void clearCahe() {
-//          fiboCache = null;
+          fiboCache = null;
           }
 
      public static void test() {
           FiboMapCache cashOn = new FiboMapCache(true);
-          FiboMapCache cashOff = new FiboMapCache(true);
+          FiboMapCache cashOff = new FiboMapCache(false);
           long a = System.nanoTime();
           for (int n = 1; n <= 1000; n++) cashOff.fiboNumber(n);
           a = System.nanoTime() - a;
