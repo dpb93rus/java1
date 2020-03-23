@@ -29,7 +29,7 @@ public class FiboMapCache {
           fiboCache.put(n, y);
           return y;
      }
-     public void clearCache() {
+     public void clearCahe() {
           fiboCache = null;
           }
 
