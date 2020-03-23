@@ -14,7 +14,7 @@ public class FiboMapCache {
      }
 
      public BigDecimal fiboNumber(int n) {
-          if ((cacheOn)|(fiboCache==null)) fiboCache = new HashMap<Integer, BigDecimal>();
+          if ((fiboCache==null)) fiboCache = new HashMap<Integer, BigDecimal>();
           if ((cacheOn)&(fiboCache.containsKey(n))) return fiboCache.get(n);
           BigDecimal x = new BigDecimal("0");
           BigDecimal y = new BigDecimal("1");
@@ -46,8 +46,10 @@ public class FiboMapCache {
 
 
 
+
           System.out.println("fiboNumber cacheOn="+b);
           System.out.println("fiboNumber cacheOff="+a);
+
      }
 
      public static void main(String[] args) {
