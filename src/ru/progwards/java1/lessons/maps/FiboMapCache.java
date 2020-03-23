@@ -30,7 +30,7 @@ public class FiboMapCache {
           return y;
      }
      public void clearCahe() {
-          fiboCache = null;
+//          fiboCache = null;
           }
 
      public static void test() {

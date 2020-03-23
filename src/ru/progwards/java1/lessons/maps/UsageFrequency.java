@@ -6,19 +6,17 @@
 //import java.util.Map;
 //
 //public class UsageFrequency {
-//
-//    public void processFile(String fileName){
+//    public void processFile(String fileName) throws Exception {
 //        try {
 //            FileReader reader = new FileReader(fileName);
 //            StringBuffer D = new StringBuffer("");
 //            for (int c; (c = reader.read()) != -1; ) {
-//                D.append(code[(int) c]);
+//                D.append(c);
 //            }
 //    } catch (Throwable e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
+//            throw new Exception() ;
 //        }
+//
 //        public Map<Character, Integer> getLetters(){
 //
 //    }
@@ -26,6 +24,6 @@
 //
 //    }
 //
-//
-//
-//}
+
+
+}
