@@ -38,7 +38,7 @@ public class UsageFrequency {
             Map<Character, Integer> map = new HashMap<>();
             char [] a = C.toCharArray();
             for (char t:a) {
-                if  (Character.isLetter(t)) {
+                if  (Character.isLetterOrDigit(t)) {
                     Integer temp = map.get(t);
                     if (temp == null) {
                         map.put(t, 1);
@@ -54,7 +54,7 @@ public class UsageFrequency {
         Map<String, Integer> map= new HashMap<>();
         String[] s = sep(D);
         for (String t:s){
-            if ("".equals(t)) break;
+            if (t==null) break;
             Integer temp = map.get(t);
             if (temp == null) {
                 map.put(t, 1);
@@ -69,8 +69,8 @@ public class UsageFrequency {
             Z.processFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\maps\\wiki.test.tokens");
 
         char xxx = 'h';
-        System.out.println(Z.getLetters().get('v'));
-        System.out.println(Z.getWords().get("the"));
+        System.out.println(Z.getLetters().get(null));
+        System.out.println(Z.getWords().get("a"));
     }
 
 
