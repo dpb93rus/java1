@@ -13,8 +13,8 @@ public class UsageFrequency {
             String o[] = new String[1000000];
             int n1 = 0;
             for (int n = 0; n < i.length(); n++) {
-                if (Character.isLetter(i.charAt(n))) t.append(i.charAt(n));
-                if (!Character.isLetter(i.charAt(n))) {
+                if (Character.isLetterOrDigit(i.charAt(n))) t.append(i.charAt(n));
+                if (!Character.isLetterOrDigit(i.charAt(n))) {
                     if (t.length() > 0) {
                         o[n1] = t.toString();
                         n1++;
