@@ -25,13 +25,13 @@ public class UsageFrequency {
             }
             return o;
         }
-    public void processFile(String fileName) throws Exception {
+    public void processFile(String fileName) {
         try {
             FileReader reader = new FileReader(fileName);
             for (int c; (c = reader.read()) != -1; ) D.append((char)c);
             C = new String(D);
         } catch (Throwable e) {
-            throw new Exception();
+            System.err.println("Произошло непонятное недоразумение");
         }
     }
 
@@ -66,14 +66,11 @@ public class UsageFrequency {
     }
     public static void main(String[] args) {
         UsageFrequency Z = new UsageFrequency();
-        try {
             Z.processFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\maps\\wiki.test.tokens");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
         char xxx = 'h';
         System.out.println(Z.getLetters().get('v'));
-        System.out.println(Z.getWords().get("starred"));
+        System.out.println(Z.getWords().get("he"));
     }
 
 
