@@ -55,6 +55,7 @@ public class UsageFrequency {
         Map<String, Integer> map= new HashMap<>();
         String[] s = sep(D);
         for (String t:s){
+            if ("".equals(t)) break;
             Integer temp = map.get(t);
             if (temp == null) {
                 map.put(t, 1);
