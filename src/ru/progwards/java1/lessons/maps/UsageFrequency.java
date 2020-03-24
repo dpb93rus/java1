@@ -8,10 +8,27 @@ import java.util.Map;
 
 public class UsageFrequency {
     StringBuffer D = new StringBuffer(""); String C;// Переменные класса принимающие строку
+        public static String[] sep(StringBuffer i) {
+            StringBuilder t = new StringBuilder();
+            String o[] = new String[1000000];
+            int n1 = 0;
+            for (int n = 0; n < i.length(); n++) {
+                if (Character.isLetter(i.charAt(n))) t.append(i.charAt(n));
+                if (!Character.isLetter(i.charAt(n))) {
+                    if (t.length() > 0) {
+                        o[n1] = t.toString();
+                        n1++;
+                        t = new StringBuilder();
+                    }
+                    i.deleteCharAt(0);
+                }
+            }
+            return o;
+        }
     public void processFile(String fileName) throws Exception {
         try {
             FileReader reader = new FileReader(fileName);
-            for (int c; (c = reader.read()) != -1; ) D.append(c);
+            for (int c; (c = reader.read()) != -1; ) D.append((char)c);
             C = new String(D);
         } catch (Throwable e) {
             throw new Exception();
@@ -24,7 +41,11 @@ public class UsageFrequency {
             for (char t:a) {
                 if  (Character.isLetter(t)) {
                     Integer temp = map.get(t);
-                    if (temp != null)  map.put(t, (temp + 1));
+                    if (temp == null) {
+                        map.put(t, 1);
+                    } else {
+                        map.put(t, (temp + 1));
+                    }
                 }
             }
             return map;
@@ -32,19 +53,27 @@ public class UsageFrequency {
     }
     public Map<String, Integer> getWords() {
         Map<String, Integer> map= new HashMap<>();
-        String[] s = C.split(".,!? @");
+        String[] s = sep(D);
         for (String t:s){
             Integer temp = map.get(t);
-            if (temp != null)  map.put(t, (temp + 1));
+            if (temp == null) {
+                map.put(t, 1);
+            } else {
+                map.put(t, (temp + 1));
+            }
         }
         return map;
     }
-
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         UsageFrequency Z = new UsageFrequency();
-        Z.processFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\maps\\wiki.test.tokens");
-        System.out.println(Z.getLetters());
-        System.out.println(Z.getWords());
+        try {
+            Z.processFile("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\maps\\wiki.test.tokens");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        char xxx = 'h';
+        System.out.println(Z.getLetters().get('v'));
+        System.out.println(Z.getWords().get("starred"));
     }
 
 
