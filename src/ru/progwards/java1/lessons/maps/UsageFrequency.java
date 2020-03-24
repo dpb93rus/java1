@@ -20,7 +20,6 @@ public class UsageFrequency {
                         n1++;
                         t = new StringBuilder();
                     }
-                    i.deleteCharAt(0);
                 }
             }
             return o;
@@ -71,7 +70,7 @@ public class UsageFrequency {
 
         char xxx = 'h';
         System.out.println(Z.getLetters().get('v'));
-        System.out.println(Z.getWords().get("he"));
+        System.out.println(Z.getWords().get("the"));
     }
 
 
