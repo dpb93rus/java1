@@ -43,7 +43,7 @@ public class FiboMapCache {
         for (int n = 1; n <= 1000; n++) cashOn.fiboNumber(n);
         for (int n = 1; n <= 1000; n++) cashOn.fiboNumber(n);
         b = System.nanoTime() - b;
-        cashOff.clearCahe();
+//        cashOff.clearCahe();
         long a = System.nanoTime();
         for (int n = 1; n <= 1000; n++) cashOff.fiboNumber(n);
         for (int n = 1; n <= 1000; n++) cashOff.fiboNumber(n);
