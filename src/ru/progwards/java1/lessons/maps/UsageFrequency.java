@@ -34,7 +34,8 @@ public class UsageFrequency {
         Map<String, Integer> map= new HashMap<>();
         String[] s = C.split(".,!? @");
         for (String t:s){
-            map.put(t, (map.get(t)) + 1);
+            Integer temp = map.get(t);
+            if (temp != null)  map.put(t, (temp + 1));
         }
         return map;
     }
