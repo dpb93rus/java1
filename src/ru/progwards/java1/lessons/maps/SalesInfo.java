@@ -41,6 +41,7 @@ public class SalesInfo {
             }
         } catch (Throwable e) {
             System.err.println("Произошло необъяснимое и не очень понятное недоразумение");
+            throw new Exception();
         }
         return i;
     }
