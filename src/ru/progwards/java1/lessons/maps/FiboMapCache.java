@@ -55,7 +55,7 @@ public class FiboMapCache {
     }
 
     public static void main(String[] args) {
-        test();
+        System.out.println(Integer.parseInt("456d6675"));
 
     }
 }

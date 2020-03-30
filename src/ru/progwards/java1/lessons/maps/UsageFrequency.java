@@ -30,7 +30,7 @@ public class UsageFrequency {
             for (int c; (c = reader.read()) != -1; ) D.append((char)c);
             C = new String(D);
         } catch (Throwable e) {
-            System.err.println("Произошло непонятное недоразумение");
+            System.err.println("Произошло необъяснимое и не очень понятное недоразумение");
         }
     }
 
