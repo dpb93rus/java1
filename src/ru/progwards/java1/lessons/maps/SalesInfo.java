@@ -21,7 +21,7 @@ public class SalesInfo {
         }
     }
 
-    public int loadOrders(String fileName) throws Throwable {
+    public int loadOrders(String fileName) {
 //        if (!data.isEmpty()) data.clear();
         int i = 0;
         try (FileReader reader = new FileReader(fileName);
@@ -41,7 +41,6 @@ public class SalesInfo {
             }
         } catch (Throwable e) {
             System.err.println("Произошло необъяснимое и не очень понятное недоразумение");
-            throw new Exception();
         }
         return i;
     }
@@ -69,7 +68,6 @@ public class SalesInfo {
     public static void main(String[] args) throws Throwable {
         SalesInfo A = new SalesInfo();
         System.out.println(A.loadOrders("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\maps\\wiki.test.tokens"));
-        System.out.println(A.data);
         System.out.println(A.getGoods());
         System.out.println(A.getCustomers());
     }
