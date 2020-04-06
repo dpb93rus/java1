@@ -70,5 +70,7 @@ public class Insurance {
         return "Insurance issued on " + start + " is valid";
     }
 
-
+    public static void main(String[] args) {
+        Insurance A = new Insurance("0000-00-00T00:00:00", FormatStyle.SHORT);
+    }
 }
