@@ -4,6 +4,9 @@ import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.Temporal;
+import java.time.temporal.TemporalUnit;
 
 
 public class Insurance {
@@ -19,58 +22,57 @@ public class Insurance {
     public Insurance(String strStart, FormatStyle style) {
 
         if (style == FormatStyle.SHORT) {
-            DateTimeFormatter form = DateTimeFormatter.ofPattern("yyyy.MM.dd");
-            LocalDate D = LocalDate.parse(strStart, form);
+            LocalDate D = LocalDate.parse(strStart, DateTimeFormatter.ISO_LOCAL_DATE);
             LocalTime T = LocalTime.of(0,0);
             start = ZonedDateTime.of(D,T, ZoneId.systemDefault());
 
         }
         if (style == FormatStyle.LONG) {
-            DateTimeFormatter form = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss");
-            LocalDateTime D = LocalDateTime.parse(strStart, form);
+            LocalDateTime D = LocalDateTime.parse(strStart, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
             start = ZonedDateTime.of(D, ZoneId.systemDefault());
         }
         if (style == FormatStyle.FULL) {
-            DateTimeFormatter form = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm:ss V");
-            start = ZonedDateTime.parse(strStart, form);
+            start = ZonedDateTime.parse(strStart, DateTimeFormatter.ISO_ZONED_DATE_TIME);
         }
     }
-
-
 
     public void setDuration (Duration duration) {this.duration = duration;}
 
     public void setDuration(ZonedDateTime expiration){
-        duration = Duration.between(start,expiration);
+        duration = Duration.between(start, expiration);
     }
 
     public void setDuration(int months, int days, int hours){
-        duration = Duration.between(start,start.plusMonths(months).plusDays(days).plusHours(hours));
+        duration = Duration.between(start, start.plusMonths(months).plusDays(days).plusHours(hours));
     }
     public void setDuration(String strDuration, FormatStyle style) {
         if (style == FormatStyle.SHORT) {
             duration = Duration.ofMillis(Long.parseLong(strDuration));
         }
         if (style == FormatStyle.LONG) {
-            DateTimeFormatter form = DateTimeFormatter.ofPattern("ISO_LOCAL_DATE_TIME");
-            LocalDateTime t = LocalDateTime.parse(strDuration, form);
-            duration = Duration.between(LocalDateTime.parse("0000-00-00T00:00:00", form),t);
+            LocalDateTime t = LocalDateTime.parse(strDuration, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+            duration = Duration.between(LocalDateTime.parse("0000-00-00T00:00:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME), t);
         }
         if (style == FormatStyle.FULL) {
             duration = Duration.parse(strDuration);
         }
     }
     public boolean checkValid (ZonedDateTime dateTime) {
-        if (dateTime.isAfter(start.plus(duration))) { lastRes = false;  return false;}
-        lastRes = true; return true;
+        if (dateTime.isAfter(start.plus(duration))|(dateTime.isBefore(start))) {  return false;}
+        return true;
     }
 
     public String toString(){
-        if (lastRes) return "Insurance issued on " + start + " is not valid";
-        return "Insurance issued on " + start + " is valid";
+        if (this.checkValid(Instant.now().atZone(ZoneId.systemDefault()))) return "Insurance issued on " + start + " is valid";
+        return "Insurance issued on " + start + " is not valid";
     }
 
     public static void main(String[] args) {
-        Insurance A = new Insurance("0000-00-00T00:00:00", FormatStyle.SHORT);
+        Insurance A = new Insurance( ZonedDateTime.now().minus(1, ChronoUnit.MINUTES).toString(), FormatStyle.FULL);
+        A.setDuration(Duration.ofDays(75L));
+        System.out.println(A.toString());
+        Insurance B = new Insurance( LocalDateTime.now().plus(1L, ChronoUnit.DAYS).toString(), FormatStyle.LONG);
+        A.setDuration(Duration.ofDays(150L));
+        System.out.println(A.toString());
     }
 }
