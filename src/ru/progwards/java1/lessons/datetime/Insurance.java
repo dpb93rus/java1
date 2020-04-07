@@ -23,7 +23,7 @@ public class Insurance {
 
         if (style == FormatStyle.SHORT) {
             LocalDate D = LocalDate.parse(strStart, DateTimeFormatter.ISO_LOCAL_DATE);
-            LocalTime T = LocalTime.of(0,0);
+            LocalTime T = LocalTime.of(0,0) ;
             start = ZonedDateTime.of(D,T, ZoneId.systemDefault());
 
         }
@@ -72,7 +72,7 @@ public class Insurance {
         A.setDuration(Duration.ofDays(75L));
         System.out.println(A.toString());
         Insurance B = new Insurance( LocalDateTime.now().plus(1L, ChronoUnit.DAYS).toString(), FormatStyle.LONG);
-        A.setDuration(Duration.ofDays(150L));
-        System.out.println(A.toString());
+        B.setDuration(Duration.ofDays(150L));
+        System.out.println(B.toString());
     }
 }
