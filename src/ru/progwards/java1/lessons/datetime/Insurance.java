@@ -17,7 +17,7 @@ public class Insurance {
     private Duration duration;
     private boolean lastRes;
 
-    public Insurance(ZonedDateTime start){ this.start = start; }
+    public Insurance(ZonedDateTime start){ this.start = start;  }
 
     public Insurance(String strStart, FormatStyle style) {
 
@@ -51,7 +51,7 @@ public class Insurance {
         }
         if (style == FormatStyle.LONG) {
             LocalDateTime t = LocalDateTime.parse(strDuration, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-            duration = Duration.between(LocalDateTime.parse("0000-01-00T00:00:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME), t);
+            duration = Duration.between(LocalDateTime.parse("0000-01-01T00:00:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME), t);
         }
         if (style == FormatStyle.FULL) {
             duration = Duration.parse(strDuration);
@@ -63,6 +63,7 @@ public class Insurance {
     }
 
     public String toString(){
+        if (duration==null) duration = Duration.ZERO;
         if (this.checkValid(Instant.now().atZone(ZoneId.systemDefault()))) return "Insurance issued on " + start + " is valid";
         return "Insurance issued on " + start + " is not valid";
     }
