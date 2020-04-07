@@ -51,7 +51,7 @@ public class Insurance {
         }
         if (style == FormatStyle.LONG) {
             LocalDateTime t = LocalDateTime.parse(strDuration, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-            duration = Duration.between(LocalDateTime.parse("0000-00-00T00:00:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME), t);
+            duration = Duration.between(LocalDateTime.parse("0000-01-00T00:00:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME), t);
         }
         if (style == FormatStyle.FULL) {
             duration = Duration.parse(strDuration);
