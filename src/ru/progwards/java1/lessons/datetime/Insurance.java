@@ -58,12 +58,10 @@ public class Insurance {
         }
     }
     public boolean checkValid (ZonedDateTime dateTime) {
-        if (dateTime.isAfter(start.plus(duration))|(dateTime.isBefore(start))) {  return false;   }
-        return true;
+        if (duration==null) return dateTime.isAfter(start);
+        return !(dateTime.isAfter(start.plus(duration))|(dateTime.isBefore(start)));
     }
-
     public String toString(){
-        if (duration==null) duration = Duration.ZERO;
         if (this.checkValid(Instant.now().atZone(ZoneId.systemDefault()))) return "Insurance issued on " + start + " is valid";
         return "Insurance issued on " + start + " is not valid";
     }
