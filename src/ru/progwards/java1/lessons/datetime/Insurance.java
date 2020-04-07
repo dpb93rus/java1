@@ -58,8 +58,7 @@ public class Insurance {
         }
     }
     public boolean checkValid (ZonedDateTime dateTime) {
-        if (dateTime.isAfter(start.plus(duration))|(dateTime.isBefore(start))|
-                (dateTime == start)|(dateTime == start.plus(duration))) {  return false;   }
+        if (dateTime.isAfter(start.plus(duration))|(dateTime.isBefore(start))) {  return false;   }
         return true;
     }
 
