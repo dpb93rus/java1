@@ -50,9 +50,9 @@ public class Insurance {
             duration = Duration.ofMillis(Long.parseLong(strDuration));
         }
         if (style == FormatStyle.LONG) {
-            duration = Duration.ofSeconds(Instant.parse(strDuration).getEpochSecond());
-//            LocalDateTime t = LocalDateTime.parse(strDuration, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-//            duration = Duration.between(LocalDateTime.parse("0000-01-01T00:00:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME), t);
+//            duration = Duration.ofSeconds(LocalDateTime.parse(strDuration, DateTimeFormatter.ISO_LOCAL_DATE_TIME).toEpochSecond(ZoneOffset.UTC));
+            LocalDateTime t = LocalDateTime.parse(strDuration, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+            duration = (Duration.between(LocalDateTime.parse("0000-01-01T00:00:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME), t.plus(1,ChronoUnit.DAYS).plus(1,ChronoUnit.MONTHS)));
         }
         if (style == FormatStyle.FULL) {
             duration = Duration.parse(strDuration);
@@ -76,7 +76,7 @@ public class Insurance {
         System.out.println(B);
         Insurance C = new Insurance(ZonedDateTime.parse
                 ("2020-03-07T19:16:18.160428+03:00[Europe/Moscow]",DateTimeFormatter.ISO_ZONED_DATE_TIME));
-        C.setDuration("0000-01-01T00:00:00", Insurance.FormatStyle.LONG);
+        C.setDuration("0001-03-01T00:00:00", FormatStyle.LONG);
         System.out.println(C);
     }
 }
