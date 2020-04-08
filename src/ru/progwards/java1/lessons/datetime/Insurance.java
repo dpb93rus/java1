@@ -50,7 +50,7 @@ public class Insurance {
             duration = Duration.ofMillis(Long.parseLong(strDuration));
         }
         if (style == FormatStyle.LONG) {
-            duration = Duration.ofSeconds((LocalDateTime.parse(strDuration, DateTimeFormatter.ISO_LOCAL_DATE_TIME)).toEpochSecond(ZoneOffset.UTC));
+            duration = Duration.ofSeconds(Instant.parse(strDuration).getEpochSecond());
 //            LocalDateTime t = LocalDateTime.parse(strDuration, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 //            duration = Duration.between(LocalDateTime.parse("0000-01-01T00:00:00", DateTimeFormatter.ISO_LOCAL_DATE_TIME), t);
         }
