@@ -12,14 +12,14 @@ import java.util.List;
 
 public class FindDuplicates {
 
-    ArrayList<File> files = new ArrayList<>();
+    static ArrayList<File> files = new ArrayList<>();
     ArrayList<File> files2 = new ArrayList<>();
 
-    public void processFilesFromFolder(File folder) {
+    public static void listOfFilesFromFolderTree(File folder) {
         File[] folderEntries = folder.listFiles();
         for (File entry : folderEntries) {
             if (entry.isDirectory()) {
-                processFilesFromFolder(entry);
+                listOfFilesFromFolderTree(entry);
                 continue;
             }
             files.add(entry);
@@ -29,17 +29,17 @@ public class FindDuplicates {
     public List<List<String>> findDuplicates(String startPath) {
         ArrayList<List<String>> list = new ArrayList<>();
         File folder = new File(startPath);
-        processFilesFromFolder(folder);
+        listOfFilesFromFolderTree(folder);
         for (File temp1 : files) {
             ArrayList<String> sameFiles = new ArrayList<>();
             int c = 0;
             for (File temp2 : files) {
                 if (temp1.equals(temp2)) {
                     if (c == 0) {
-                        sameFiles.add(temp1.getAbsolutePath());
-                        sameFiles.add(temp2.getAbsolutePath());
+                        sameFiles.add(temp1.getPath());
+                        sameFiles.add(temp2.getPath());
                         c++;
-                    } else files2.add(temp2);
+                    } else sameFiles.add(temp2.getPath());
                 }
             }
             list.add(sameFiles);
@@ -47,9 +47,10 @@ public class FindDuplicates {
         return list;
     }
 
+
     public static void main(String[] args) {
         FindDuplicates A = new FindDuplicates();
-        A.findDuplicates("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\files\\Folder");
+        System.out.println(A.findDuplicates("C:\\Folder").toString());;
     }
 }
 
