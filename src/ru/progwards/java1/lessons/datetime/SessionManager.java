@@ -5,36 +5,37 @@ import java.util.ArrayList;
 
 public class SessionManager {
 
-    private ArrayList <UserSession> sessions;
+    private ArrayList<UserSession> sessions;
     private int sessionValid;
 
     public SessionManager(int sessionValid) {
-    this.sessionValid = sessionValid;
+        this.sessionValid = sessionValid;
+        sessions = new ArrayList<>();
     }
 
     public void add(UserSession userSession) {
-    sessions.add(userSession);
+        sessions.add(userSession);
     }
 
-    public UserSession find(String userName) {
-    for (UserSession temp: sessions) {
-        if (temp.getUserName().equals(userName)) return temp;
-    }
+    public UserSession find (String userName) {
+        for (UserSession temp : sessions) {
+            if (temp.getUserName().equals(userName)) return temp;
+        }
         return null;
     }
 
     public UserSession get(int sessionHandle) {
-        for (UserSession temp: sessions) {
-            if ((temp.getSessionHandle()==(sessionHandle))&&
-                    (!LocalDateTime.now().isAfter(temp.getLastAccess().plusSeconds((long)temp.getSessionHandle()))))
-                    return temp;
+        for (UserSession temp : sessions) {
+            if ((temp.getSessionHandle() == (sessionHandle)) &&
+                    (!LocalDateTime.now().isAfter(temp.getLastAccess().plusSeconds((long) this.sessionValid))))
+                return temp;
         }
         return null;
     }
 
     public void delete(int sessionHandle) {
-        for (UserSession temp: sessions) {
-            if (temp.getSessionHandle()==sessionHandle) {
+        for (UserSession temp : sessions) {
+            if (temp.getSessionHandle() == sessionHandle) {
                 sessions.remove(temp);
                 break;
             }
@@ -43,11 +44,18 @@ public class SessionManager {
     }
 
     public void deleteExpired() {
-        for (UserSession temp: sessions) {
-            if (!LocalDateTime.now().isAfter(temp.getLastAccess().plusSeconds((long)temp.getSessionHandle()))&&
-                    (!LocalDateTime.now().isBefore(temp.getLastAccess())))  sessions.remove(temp);
+        for (UserSession temp : sessions) {
+            if (!LocalDateTime.now().isAfter(temp.getLastAccess().plusSeconds((long) this.sessionValid)) &&
+                    (!LocalDateTime.now().isBefore(temp.getLastAccess()))) sessions.remove(temp);
         }
     }
+
+
+    public static void main(String[] args) {
+    SessionManager a = new SessionManager(50);
+    UserSession b = new UserSession("name");
+        System.out.println(b.getSessionHandle());
+    a.add(b);
+    a.get(12);
+    }
 }
-
-
