@@ -7,17 +7,6 @@ import java.util.*;
 public class Profiler {
     static Map<String, StatisticInfo> data = new TreeMap<>();
     static Stack <Map.Entry<String, StatisticInfo>> stack = new Stack<>();
-    public static class StatisticInfo {
-        public String sectionName;                                                             //
-        public int fullTime;                                                                   //
-        public int selfTime;                                                                   //
-        public int count = 0;
-        public Instant start;
-        @Override
-        public String toString() {
-            return sectionName+"     "+fullTime+"     "+selfTime+"     "+count;
-        }
-    }
     public static void enterSection(String name) {
         StatisticInfo temp = new StatisticInfo();
         if (temp.count == 0) temp.sectionName = name;
@@ -32,6 +21,7 @@ public class Profiler {
         int t = (int) (Duration.between(temp.start, Instant.now()).toMillis());
         temp.fullTime += t;
         temp.selfTime += t;
+        temp.count++;
         data.put(name, temp);
         if (!stack.isEmpty()) {
             temp = stack.pop().getValue();
