@@ -33,7 +33,7 @@ public class FilesSelect {
                 if (t.contains(key)) {
                     Path directoryOut = Paths.get(outFolder).resolve(key);
                     if (!Files.exists(directoryOut)) Files.createDirectory(directoryOut);
-                    if (!Files.exists(directoryOut.resolve(temp.getName())))Files.copy(temp.toPath(), directoryOut);
+                    if (!Files.exists(directoryOut.resolve(temp.getName()))) Files.copy(temp.toPath(), directoryOut);
                 }
             }
         }
