@@ -26,9 +26,12 @@ public class SessionManager {
 
     public UserSession get(int sessionHandle) {
         for (UserSession temp : sessions) {
-            if ((temp.getSessionHandle() == (sessionHandle)) &&
-                    (!LocalDateTime.now().isAfter(temp.getLastAccess().plusSeconds((long) this.sessionValid))))
+            if ((temp.getSessionHandle() == (sessionHandle)) &
+                    (!LocalDateTime.now().isAfter(temp.getLastAccess().plusSeconds((long) this.sessionValid))) &
+                    !LocalDateTime.now().isBefore(temp.getLastAccess())) {
+                temp.updateLastAccess();
                 return temp;
+            }
         }
         return null;
     }
