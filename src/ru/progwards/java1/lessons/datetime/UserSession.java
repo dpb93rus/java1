@@ -17,4 +17,9 @@ public class UserSession {
         lastAccess = LocalDateTime.now();
         sessionHandle = new Random().nextInt();
     }
+    public UserSession(UserSession a) {
+        this.userName = a.userName;
+        a.updateLastAccess();
+        sessionHandle = a.sessionHandle;
+    }
 }

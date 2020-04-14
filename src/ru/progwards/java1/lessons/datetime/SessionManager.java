@@ -30,9 +30,9 @@ public class SessionManager {
                     (!LocalDateTime.now().isAfter(temp.getLastAccess().plusSeconds((long) this.sessionValid))) &
                     !LocalDateTime.now().isBefore(temp.getLastAccess())) {
                 int a = sessions.indexOf(temp);
-                UserSession t = sessions.get(a);
-                t.updateLastAccess();
-                return t;
+                UserSession t = new UserSession(sessions.get(a));
+                sessions.set(a,t);
+                return sessions.get(a);
             }
         }
         return null;
