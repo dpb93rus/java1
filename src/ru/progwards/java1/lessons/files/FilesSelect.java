@@ -32,14 +32,20 @@ public class FilesSelect {
             for (String key : keys) {
                 if (t.contains(key)) {
                     Path directoryOut = Paths.get(outFolder).resolve(key);
-                    if (!Files.exists(directoryOut)) Files.createDirectory(directoryOut);
-                    if (!Files.exists(directoryOut.resolve(temp.getName()))) Files.copy(temp.toPath(), directoryOut);
+                    if (!Files.exists(directoryOut))
+                        Files.createDirectory(directoryOut);
+                    Path test = directoryOut.resolve(temp.getName());
+                    if (!Files.exists(test))
+                        Files.copy(temp.toPath(), test);
                 }
             }
         }
     }
 
     public static void main(String[] args) {
+
+
+
         FilesSelect A = new FilesSelect();
         try {
             A.selectFiles("C:\\Folder2", "C:\\FoldOut", new ArrayList<String>(List.of("звук", "ошибка")));

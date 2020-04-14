@@ -15,13 +15,14 @@ public class Profiler {
         Map.Entry <String, StatisticInfo> t =  new AbstractMap.SimpleEntry<String, StatisticInfo> (name, temp);
         stack.push(t);
     }
-
     public static void exitSection(String name) {
+        StatisticInfo temp2 = new StatisticInfo();
         StatisticInfo temp = stack.pop().getValue();
+        if (!data.containsKey(name)) temp2 = data.get(name);
         int t = (int) (Duration.between(temp.start, Instant.now()).toMillis());
-        temp.fullTime += t;
-        temp.selfTime += t;
-        temp.count++;
+        temp2.fullTime += t;
+        temp2.selfTime += t;
+        temp2.count++;
         data.put(name, temp);
         if (!stack.isEmpty()) {
             temp = stack.pop().getValue();
