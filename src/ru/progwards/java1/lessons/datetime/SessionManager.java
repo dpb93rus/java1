@@ -33,7 +33,7 @@ public class SessionManager {
                         !LocalDateTime.now().isBefore(temp.getLastAccess())) {
                     temp2 = temp;
                 } else {return null;}
-            } {return null;}
+            } else {return null;}
         }
         int a = sessions.indexOf(temp2);
         UserSession t = new UserSession(sessions.get(a));
