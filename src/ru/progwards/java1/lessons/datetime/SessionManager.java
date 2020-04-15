@@ -26,13 +26,15 @@ public class SessionManager {
 
     public UserSession get(int sessionHandle) {
         for (UserSession temp : sessions) {
-            if ((temp.getSessionHandle() == (sessionHandle)) &
-                    (!LocalDateTime.now().isAfter(temp.getLastAccess().plusSeconds((long) this.sessionValid))) &
+            if (temp.getSessionHandle() == (sessionHandle)) {
+                System.out.println(temp);
+                if ((!LocalDateTime.now().isAfter(temp.getLastAccess().plusSeconds((long) this.sessionValid))) &
                     !LocalDateTime.now().isBefore(temp.getLastAccess())) {
-                int a = sessions.indexOf(temp);
-                UserSession t = new UserSession(sessions.get(a));
-                sessions.set(a,t);
-                return sessions.get(a);
+                    int a = sessions.indexOf(temp);
+                    UserSession t = new UserSession(sessions.get(a));
+                    sessions.set(a,t);
+                    return sessions.get(a);
+                }
             }
         }
         return null;
@@ -58,9 +60,11 @@ public class SessionManager {
 
     public static void main(String[] args) {
     SessionManager a = new SessionManager(50);
+        System.out.println(a.find("name"));
     UserSession b = new UserSession("name");
-        System.out.println(b.getSessionHandle());
     a.add(b);
-    a.get(b.getSessionHandle());
+        System.out.println(a.find("name"));
+        System.out.println(a.get(b.getSessionHandle()));
+
     }
 }

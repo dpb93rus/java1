@@ -19,7 +19,11 @@ public class UserSession {
     }
     public UserSession(UserSession a) {
         this.userName = a.userName;
-        a.updateLastAccess();
+        this.updateLastAccess();
         sessionHandle = a.sessionHandle;
+    }
+    @Override
+    public String toString() {
+        return "Name:" + this.userName + ",       Last access:  " + lastAccess + ",    Session handle: " + sessionHandle;
     }
 }
