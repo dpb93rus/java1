@@ -62,18 +62,12 @@ public class SessionManager {
 
 
     public static void main(String[] args) throws InterruptedException {
-    SessionManager a = new SessionManager(4);
-        System.out.println(a.find("name"));
-    UserSession b = new UserSession("name");
-    a.add(b);
-        System.out.println(a.find("name"));
+        SessionManager a = new SessionManager(1);
+        UserSession b = new UserSession("name");
+        a.add(b);
+        Thread.sleep(500l);
         System.out.println(a.get(b.getSessionHandle()));
-        System.out.println(a.get(b.getSessionHandle()));System.out.println(a.get(b.getSessionHandle()));
-        Thread.sleep(3000l);
+        Thread.sleep(500l);
         System.out.println(a.get(b.getSessionHandle()));
-        UserSession c = new UserSession("name2");
-        Thread.sleep(1000l);
-        UserSession d = new UserSession("name3");
-        Thread.sleep(1000l);
     }
 }
