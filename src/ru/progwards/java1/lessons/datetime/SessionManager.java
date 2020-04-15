@@ -37,6 +37,7 @@ public class SessionManager {
         }
         int a = sessions.indexOf(temp2);
         UserSession t = new UserSession(sessions.get(a));
+        t.updateLastAccess();
         sessions.set(a,t);
         return sessions.get(a);
     }
