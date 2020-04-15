@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Profiler {
     static Map<String, StatisticInfo> data = new TreeMap<>();
-    static Stack <Map.Entry<String, StatisticInfo>> stack = new Stack<>();
+    static Deque <Map.Entry<String, StatisticInfo>> stack = new ArrayDeque<>();
     public static void enterSection(String name) {
         StatisticInfo temp = new StatisticInfo();
         if (!data.containsKey(name)) {
