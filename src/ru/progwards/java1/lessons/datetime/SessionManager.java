@@ -33,7 +33,7 @@ public class SessionManager {
                         !LocalDateTime.now().isBefore(temp.getLastAccess())) {
                     temp2 = temp;
                 } else {return null;}
-            }
+            } {return null;}
         }
         int a = sessions.indexOf(temp2);
         UserSession t = new UserSession(sessions.get(a));
@@ -42,13 +42,14 @@ public class SessionManager {
     }
 
     public void delete(int sessionHandle) {
+        UserSession temp2 = null;
         for (UserSession temp : sessions) {
             if (temp.getSessionHandle() == sessionHandle) {
-                sessions.remove(temp);
+                temp2 = temp;
                 break;
             }
-
         }
+        if (temp2 != null) sessions.remove(temp2);
     }
 
     public void deleteExpired() {
