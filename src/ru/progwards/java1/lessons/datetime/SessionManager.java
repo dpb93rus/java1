@@ -1,7 +1,5 @@
 package ru.progwards.java1.lessons.datetime;
 
-import ru.progwards.java1.lessons.collections.ArrayIterator;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
