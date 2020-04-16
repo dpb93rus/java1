@@ -14,8 +14,8 @@ public class UserSession {
     public void updateLastAccess() { this.lastAccess = LocalDateTime.now(); }
     public UserSession(String userName) {
         this.userName = userName;
-        lastAccess = LocalDateTime.now();
-        sessionHandle = new Random().nextInt();
+        this.lastAccess = LocalDateTime.now();
+        this.sessionHandle = new Random().nextInt();
     }
     public UserSession(UserSession a) {
         this.userName = a.userName;
