@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class FindDuplicates {
@@ -30,19 +31,15 @@ public class FindDuplicates {
         ArrayList<List<String>> list = new ArrayList<>();
         File folder = new File(startPath);
         listOfFilesFromFolderTree(folder);
-        for (File temp1 : files) {
-            ArrayList<String> sameFiles = new ArrayList<>();
-            int c = 0;
-            for (File temp2 : files) {
-                if (temp1.equals(temp2)) {
-                    if (c == 0) {
-                        sameFiles.add(temp1.getPath());
-                        sameFiles.add(temp2.getPath());
-                        c++;
-                    } else sameFiles.add(temp2.getPath());
+        for (int i = 0; i < files.size(); i++) {
+            HashSet<String> sameFiles = new HashSet<>();
+            for (int j = i+1; j < files.size(); j++) {
+                if (files.get(i)==(files.get(j))) {
+                    sameFiles.add(files.get(i).getPath());
+                    sameFiles.add(files.get(j).getPath());
                 }
             }
-            list.add(sameFiles);
+            if (!sameFiles.isEmpty()) list.add(List.copyOf(sameFiles));
         }
         return list;
     }
