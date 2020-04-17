@@ -2,72 +2,57 @@ package ru.progwards.java1.lessons.datetime;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 public class SessionManager {
-
-    private ArrayList<UserSession> sessions;
+    private HashMap<Integer, UserSession> sessions;
     private int sessionValid;
 
     public SessionManager(int sessionValid) {
         this.sessionValid = sessionValid;
-        sessions = new ArrayList<>();
+        sessions = new HashMap<>();
     }
 
     public void add(UserSession userSession) {
-    UserSession temp = null;
-    temp = this.find(userSession.getUserName());
-    if (temp != null) sessions.remove(temp);
-    sessions.add(userSession);
+    if (sessions.containsKey(userSession.getSessionHandle())) sessions.remove(userSession.getSessionHandle());
+    sessions.put(userSession.getSessionHandle(),userSession);
     }
 
     public UserSession find (String userName) {
-        for (UserSession temp : sessions) {
-            if (temp.getUserName().equals(userName)) return temp;
+        for (Map.Entry<Integer, UserSession> temp: sessions.entrySet()) {
+            if (temp.getValue().getUserName().equals(userName)) return temp.getValue();
         }
         return null;
     }
 
     public UserSession get(int sessionHandle) {
-        UserSession temp2 = null;
-        UserSession temp3 = null;
-        for (UserSession temp : sessions) {
-            if (temp.getSessionHandle() == (sessionHandle)) {
-                if ((!LocalDateTime.now().isAfter(temp.getLastAccess().plusSeconds((long) this.sessionValid))) &
-                        !LocalDateTime.now().isBefore(temp.getLastAccess())) {
-                    temp2 = temp;
-                } else {temp3 = temp; return null;}
-            } else {return null;}
-        }
-        int a = sessions.indexOf(temp2);
-        UserSession t = new UserSession(sessions.get(a));
-        t.updateLastAccess();
-        if (temp3 != null) sessions.remove(temp3);
-        sessions.set(a,t);
-        return sessions.get(a);
+            if (!sessions.containsKey(sessionHandle)) return null;
+            if ((!LocalDateTime.now().isAfter(sessions.get(sessionHandle).getLastAccess().plusSeconds((long)this.sessionValid))) &
+                    !LocalDateTime.now().isBefore(sessions.get(sessionHandle).getLastAccess())) {
+                sessions.get(sessionHandle).updateLastAccess();
+                return sessions.get(sessionHandle);
+            } else {
+                return  null;
+            }
     }
 
     public void delete(int sessionHandle) {
-        UserSession temp2 = null;
-        for (UserSession temp : sessions) {
-            if (temp.getSessionHandle() == sessionHandle) {
-                temp2 = temp;
-                break;
-            }
-        }
-        if (temp2 != null) sessions.remove(temp2);
+        sessions.remove(sessionHandle);
     }
 
     public void deleteExpired() {
-        UserSession temp2 = null;
-        for (UserSession temp : sessions) {
-            if (LocalDateTime.now().isAfter(temp.getLastAccess().plusSeconds((long) this.sessionValid)) &&
-                    (LocalDateTime.now().isBefore(temp.getLastAccess()))) {
-                temp2 = temp;
-                break;
+        ArrayList<Integer> arrDel = new ArrayList<>();
+        for (Map.Entry<Integer, UserSession> temp: sessions.entrySet()) {
+            if (LocalDateTime.now().isAfter(temp.getValue().getLastAccess().plusSeconds((long)this.sessionValid))||
+                    (LocalDateTime.now().isBefore(temp.getValue().getLastAccess()))) {
+                arrDel.add(temp.getValue().getSessionHandle());
             }
         }
-        if (temp2 != null) sessions.remove(temp2);
+        for (int n = 0; n < arrDel.size(); n++) {
+            sessions.remove(arrDel.get(n));
+        }
     }
 
 
