@@ -10,6 +10,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 public class FindDuplicates {
 
@@ -26,26 +27,44 @@ public class FindDuplicates {
             files.add(entry);
         }
     }
+    public static boolean equalsFiles (File f1, File f2) throws IOException {
+        if (f1.getName().equals(f2.getName())) {
+            if (Files.getLastModifiedTime(f1.toPath()).equals(Files.getLastModifiedTime(f2.toPath()))) {
+                if (f1.getUsableSpace() == (f2.getUsableSpace())) {
+                    String strF1 = Files.readString(f1.toPath());
+                    String strF2 = Files.readString(f2.toPath());
+                    if (strF1.equals(strF2)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
 
-    public List<List<String>> findDuplicates(String startPath) {
+    public List<List<String>> findDuplicates(String startPath) throws IOException {
+        HashSet <String> q = new HashSet<>();
+        String t = "";
         ArrayList<List<String>> list = new ArrayList<>();
         File folder = new File(startPath);
         listOfFilesFromFolderTree(folder);
         for (int i = 0; i < files.size(); i++) {
             HashSet<String> sameFiles = new HashSet<>();
             for (int j = i+1; j < files.size(); j++) {
-                if (files.get(i)==(files.get(j))) {
+                if (equalsFiles(files.get(i),(files.get(j)))&(!q.contains(files.get(i).getName()))) {
                     sameFiles.add(files.get(i).getPath());
                     sameFiles.add(files.get(j).getPath());
+                    t = files.get(j).getName();
                 }
             }
             if (!sameFiles.isEmpty()) list.add(List.copyOf(sameFiles));
+            q.add(t);
         }
         return list;
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         FindDuplicates A = new FindDuplicates();
         System.out.println(A.findDuplicates("C:\\Folder").toString());;
     }
