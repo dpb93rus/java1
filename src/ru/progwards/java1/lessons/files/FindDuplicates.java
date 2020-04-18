@@ -61,7 +61,7 @@ public class FindDuplicates {
                     e.printStackTrace();
                 }
             }
-            if (!sameFiles.isEmpty()) list.add(List.copyOf(sameFiles));
+            if (!sameFiles.isEmpty()) list.add(new ArrayList<String>(sameFiles));
             q.add(t);
         }
         return list;
