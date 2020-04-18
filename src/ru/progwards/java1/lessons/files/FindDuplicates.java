@@ -42,7 +42,7 @@ public class FindDuplicates {
         return false;
     }
 
-    public List<List<String>> findDuplicates(String startPath) throws IOException {
+    public List<List<String>> findDuplicates(String startPath) {
         HashSet <String> q = new HashSet<>();
         String t = "";
         ArrayList<List<String>> list = new ArrayList<>();
@@ -51,10 +51,14 @@ public class FindDuplicates {
         for (int i = 0; i < files.size(); i++) {
             HashSet<String> sameFiles = new HashSet<>();
             for (int j = i+1; j < files.size(); j++) {
-                if (equalsFiles(files.get(i),(files.get(j)))&(!q.contains(files.get(i).getName()))) {
-                    sameFiles.add(files.get(i).getPath());
-                    sameFiles.add(files.get(j).getPath());
-                    t = files.get(j).getName();
+                try {
+                    if (equalsFiles(files.get(i),(files.get(j)))&(!q.contains(files.get(i).getName()))) {
+                        sameFiles.add(files.get(i).getPath());
+                        sameFiles.add(files.get(j).getPath());
+                        t = files.get(j).getName();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
             if (!sameFiles.isEmpty()) list.add(List.copyOf(sameFiles));
