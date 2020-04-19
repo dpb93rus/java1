@@ -22,18 +22,33 @@ public class FilesSelect {
         }
     }
 
-    public void selectFiles(String inFolder, String outFolder, List<String> keys) throws IOException {
+    public void selectFiles(String inFolder, String outFolder, List<String> keys) {
         listOfFilesFromFolderTree(new File(inFolder));
         for (File temp : files) {
-            String t = Files.readString(temp.toPath());
+            String t = null;
+            try {
+                t = Files.readString(temp.toPath());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             for (String key : keys) {
                 if (t.contains(key)) {
                     Path directoryOut = Paths.get(outFolder).resolve(key);
-                    if (!Files.exists(directoryOut))
-                        Files.createDirectory(directoryOut);
+                    if (!Files.exists(directoryOut)) {
+                        try {
+                            Files.createDirectory(directoryOut);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                     Path test = directoryOut.resolve(temp.getName());
-                    if (!Files.exists(test))
-                        Files.copy(temp.toPath(), test);
+                    if (!Files.exists(test)) {
+                        try {
+                            Files.copy(temp.toPath(), test);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             }
         }
