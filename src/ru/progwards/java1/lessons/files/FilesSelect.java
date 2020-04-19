@@ -10,9 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FilesSelect {
-
     static ArrayList<File> files = new ArrayList<>();
-
     public static void listOfFilesFromFolderTree(File folder) {
         File[] folderEntries = folder.listFiles();
         for (File entry : folderEntries) {
@@ -23,7 +21,6 @@ public class FilesSelect {
             if (entry.getName().toUpperCase().contains(".TXT")) files.add(entry);
         }
     }
-
 
     public void selectFiles(String inFolder, String outFolder, List<String> keys) throws IOException {
         listOfFilesFromFolderTree(new File(inFolder));
@@ -48,7 +45,7 @@ public class FilesSelect {
 
         FilesSelect A = new FilesSelect();
         try {
-            A.selectFiles("C:\\Folder2", "C:\\FoldOut", new ArrayList<String>(List.of("звук", "ошибка")));
+            A.selectFiles("C:\\Folder2", "C:\\FoldOut", new ArrayList<String>(List.of("звук", "течение", "жизней")));
         } catch (IOException e) {
             e.printStackTrace();
         }
