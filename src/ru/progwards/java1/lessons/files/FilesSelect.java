@@ -54,15 +54,15 @@ public class FilesSelect {
         }
     }
 
-    public static void main(String[] args) {
-
-
-
-        FilesSelect A = new FilesSelect();
-        try {
-            A.selectFiles("C:\\Folder2", "C:\\FoldOut", new ArrayList<String>(List.of("звук", "течение", "жизней")));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void main(String[] args) {
+//
+//
+//
+//        FilesSelect A = new FilesSelect();
+//        try {
+//            A.selectFiles("C:\\Folder2", "C:\\FoldOut", new ArrayList<String>(List.of("звук", "течение", "жизней")));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
