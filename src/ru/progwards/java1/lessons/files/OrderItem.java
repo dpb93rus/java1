@@ -8,4 +8,9 @@ public class OrderItem {
 
     public double price;
 
+    public OrderItem (String goodsName, int count, double price) {
+        this.count = count;
+        this.goodsName = goodsName;
+        this.price = price;
+    }
 }
