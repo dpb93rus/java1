@@ -11,10 +11,9 @@ package ru.progwards.java1.lessons.files;
 
 public class OrderProcessor {
     static Path workDir; static ArrayList<File> files = new ArrayList<>();
-    static TreeSet<Order> loadedOrders;
+    static TreeSet<Order> loadedOrders = new TreeSet<>();
     public OrderProcessor(String startPath){
-        workDir = Path.of(startPath);
-        listOfFilesFromFolderTree(workDir.toFile());
+        listOfFilesFromFolderTree(Path.of(startPath).toFile());
     }
     public static void listOfFilesFromFolderTree(File folder) {
         File[] folderEntries = folder.listFiles();
@@ -32,18 +31,21 @@ public class OrderProcessor {
             String[] n = name.split("-");
             String data = Files.readString(f.toPath());
             String[] lines = data.split("\\n");
-            if ((name.length() < 19) || !(n[2].substring(n[2].length() - 4).toLowerCase().equals(".csv")) ||
-                    (!(n[0].length() == 3)) || (!(n[1].length() == 6)) || (!(n[2].length() == 7))) return null;
+            if ((name.length() < 19) || n.length!=3) return null;
+            if (!".csv".equals(n[2].substring(n[2].length() - 4).toLowerCase()) ||
+                    ((n[0].length() != 3)) || ((n[1].length() != 6)) || ((n[2].length() != 8))) return null;
             else {
                 Order o = new Order();
+                o.sum = 0; o.items = new ArrayList<>();
                 o.datetime = LocalDateTime.ofInstant(Files.getLastModifiedTime(f.toPath()).toInstant(), ZoneId.systemDefault());
                 o.customerId = n[2].substring(n[2].length() - 8, n[2].length() - 4);
                 o.orderId = n[1]; o.shopId = n[0];
 
                 for (int c = 0; c < lines.length; c++) {
                     String[] d = lines[c].split(","); if (d.length!=3) continue;
-                    OrderItem i = new OrderItem(d[0], Integer.parseInt(d[1]), Double.parseDouble(d[2]));
-                    o.sum += i.price; o.items.add(i);
+                    OrderItem i = new OrderItem(d[0], Integer.parseInt(d[1].trim()), Double.parseDouble(d[2].trim()));
+                    o.sum += i.price;
+                    o.items.add(i);
                 }
                 Collections.sort(o.items, new Comparator <OrderItem>() {
                     public int compare(OrderItem o1, OrderItem o2) {
@@ -122,6 +124,12 @@ public class OrderProcessor {
     }
 
     public static void main(String[] args) {
-
+    OrderProcessor A = new OrderProcessor("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\files\\Folder2");
+    LocalDate d1 = LocalDate.of(1991,12,12);
+//        System.out.println(A.loadOrders(LocalDate.of(1991,12,12),LocalDate.of(2021,12,12), null));
+//        System.out.println(workDir);
+        System.out.println(A.loadOrders(null, null, null));
+        System.out.println(A.process(null));
+        System.out.println();
     }
 }

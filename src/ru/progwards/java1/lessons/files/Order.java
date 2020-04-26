@@ -18,6 +18,18 @@ public class Order implements Comparable <Order> {
     public double sum;
 
     @Override
+    public String toString() {
+        return "Order{" +
+                "shopId='" + shopId + '\'' +
+                ", orderId='" + orderId + '\'' +
+                ", customerId='" + customerId + '\'' +
+                ", datetime=" + datetime +
+                ", \n items=" + items +
+                ", sum=" + sum +
+                '}';
+    }
+
+    @Override
     public int compareTo(Order o) {
         if (this.datetime.isAfter((o.datetime))) return 1;
         if (this.datetime.isBefore((o.datetime))) return -1;

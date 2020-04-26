@@ -8,6 +8,15 @@ public class OrderItem {
 
     public double price;
 
+    @Override
+    public String toString() {
+        return "OrderItem{" +
+                "googsName='" + googsName + '\'' +
+                ", count=" + count +
+                ", price=" + price +
+                '}';
+    }
+
     public OrderItem (String googsName, int count, double price) {
         this.count = count;
         this.googsName = googsName;
