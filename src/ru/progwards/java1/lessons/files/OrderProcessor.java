@@ -132,7 +132,8 @@ public class OrderProcessor {
     public static void main(String[] args) {
     OrderProcessor A = new OrderProcessor("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\files\\Folder2");
 
-        System.out.println(A.loadOrders(LocalDate.of(1991,12,12), LocalDate.of(2012,12,12), "S02"));
+//        System.out.println(A.loadOrders(LocalDate.of(1991,12,12), LocalDate.of(2012,12,12), "S02"));
+        System.out.println(A.loadOrders(null,null,null));
         System.out.println(A.process("S02"));
         System.out.println(A.statisticsByShop());
         System.out.println(A.statisticsByGoods());
