@@ -10,8 +10,8 @@ package ru.progwards.java1.lessons.files;
         import java.util.*;
 
 public class OrderProcessor {
-    static Path workDir; static ArrayList<File> files = new ArrayList<>();
-    static TreeSet<Order> loadedOrders = new TreeSet<>(new Comparator <Order> () {
+    Path workDir; ArrayList<File> files = new ArrayList<>();
+    TreeSet<Order> loadedOrders = new TreeSet<>(new Comparator <Order> () {
         @Override
         public int compare(Order o1, Order o2) {
             if (o1.datetime.isAfter((o2.datetime))) return 1;
@@ -21,7 +21,7 @@ public class OrderProcessor {
     public OrderProcessor(String startPath){
         listOfFilesFromFolderTree(Path.of(startPath).toFile());
     }
-    public static void listOfFilesFromFolderTree(File folder) {
+    public void listOfFilesFromFolderTree(File folder) {
         File[] folderEntries = folder.listFiles();
         for (File entry : folderEntries) {
             if (entry.isDirectory()) {
@@ -65,6 +65,7 @@ public class OrderProcessor {
         return null;
     }
     public int loadOrders(LocalDate start, LocalDate finish, String shopId) {
+        loadedOrders.clear();
         int count = 0;
         for (File temp : files) {
             Order t = checkAndReturn(temp);
@@ -129,14 +130,14 @@ public class OrderProcessor {
         return r;
     }
 
-    public static void main(String[] args) {
-    OrderProcessor A = new OrderProcessor("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\files\\Folder2");
-
-//        System.out.println(A.loadOrders(LocalDate.of(1991,12,12), LocalDate.of(2012,12,12), "S02"));
-        System.out.println(A.loadOrders(null,null,null));
-        System.out.println(A.process("S02"));
-        System.out.println(A.statisticsByShop());
-        System.out.println(A.statisticsByGoods());
-        System.out.println(A.statisticsByDay());
-    }
+//    public static void main(String[] args) {
+//    OrderProcessor A = new OrderProcessor("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\files\\Folder2");
+//
+////        System.out.println(A.loadOrders(LocalDate.of(1991,12,12), LocalDate.of(2012,12,12), "S02"));
+//        System.out.println(A.loadOrders(null,null,null));
+//        System.out.println(A.process("S02"));
+//        System.out.println(A.statisticsByShop());
+//        System.out.println(A.statisticsByGoods());
+//        System.out.println(A.statisticsByDay());
+//    }
 }
