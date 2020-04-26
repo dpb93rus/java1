@@ -90,7 +90,7 @@ public class OrderProcessor {
     public List<Order> process(String shopId) {
         List <Order> l = new ArrayList<>();
         if (shopId == null) l.addAll(loadedOrders);
-        else for (Order o: loadedOrders) if (o.shopId==shopId) l.add(o);
+        else for (Order o: loadedOrders) if (o.shopId.equals(shopId)) l.add(o);
         return l;
     }
     public Map<String, Double> statisticsByShop() {
@@ -125,11 +125,11 @@ public class OrderProcessor {
 
     public static void main(String[] args) {
     OrderProcessor A = new OrderProcessor("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\files\\Folder2");
-    LocalDate d1 = LocalDate.of(1991,12,12);
-//        System.out.println(A.loadOrders(LocalDate.of(1991,12,12),LocalDate.of(2021,12,12), null));
-//        System.out.println(workDir);
-        System.out.println(A.loadOrders(null, null, null));
-        System.out.println(A.process(null));
-        System.out.println();
+
+        System.out.println(A.loadOrders(LocalDate.of(1991,12,12), LocalDate.of(2012,12,12), "S02"));
+        System.out.println(A.process("S02"));
+        System.out.println(A.statisticsByShop());
+        System.out.println(A.statisticsByGoods());
+        System.out.println(A.statisticsByDay());
     }
 }

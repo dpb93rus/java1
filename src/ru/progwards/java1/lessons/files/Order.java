@@ -19,14 +19,14 @@ public class Order implements Comparable <Order> {
 
     @Override
     public String toString() {
-        return "Order{" +
-                "shopId='" + shopId + '\'' +
-                ", orderId='" + orderId + '\'' +
-                ", customerId='" + customerId + '\'' +
-                ", datetime=" + datetime +
+        return "\n Order{" +
+                "shId='" + shopId + '\'' +
+                ", orId='" + orderId + '\'' +
+                ", cusId='" + customerId + '\'' +
+                ", date=" + datetime +
                 ", \n items=" + items +
                 ", sum=" + sum +
-                '}';
+                "}\n";
     }
 
     @Override

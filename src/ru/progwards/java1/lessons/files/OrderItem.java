@@ -10,10 +10,10 @@ public class OrderItem {
 
     @Override
     public String toString() {
-        return "OrderItem{" +
-                "googsName='" + googsName + '\'' +
-                ", count=" + count +
-                ", price=" + price +
+        return "OI{" +
+                "gName='" + googsName + '\'' +
+                ", c=" + count +
+                ", pr=" + price +
                 '}';
     }
 
