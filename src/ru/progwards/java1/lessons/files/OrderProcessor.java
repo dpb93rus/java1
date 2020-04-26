@@ -11,7 +11,13 @@ package ru.progwards.java1.lessons.files;
 
 public class OrderProcessor {
     static Path workDir; static ArrayList<File> files = new ArrayList<>();
-    static TreeSet<Order> loadedOrders = new TreeSet<>();
+    static TreeSet<Order> loadedOrders = new TreeSet<>(new Comparator <Order> () {
+        @Override
+        public int compare(Order o1, Order o2) {
+            if (o1.datetime.isAfter((o2.datetime))) return 1;
+            if (o2.datetime.isBefore((o2.datetime))) return -1;
+            return 0;
+        }});
     public OrderProcessor(String startPath){
         listOfFilesFromFolderTree(Path.of(startPath).toFile());
     }
