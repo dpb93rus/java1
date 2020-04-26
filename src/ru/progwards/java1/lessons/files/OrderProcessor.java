@@ -1,13 +1,13 @@
 package ru.progwards.java1.lessons.files;
-import javax.management.ObjectName;
-import java.time.*;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.*;
+        import javax.management.ObjectName;
+        import java.time.*;
+        import java.io.File;
+        import java.io.IOException;
+        import java.nio.file.Files;
+        import java.nio.file.Path;
+        import java.time.LocalDate;
+        import java.time.LocalDateTime;
+        import java.util.*;
 
 public class OrderProcessor {
     static Path workDir; static ArrayList<File> files = new ArrayList<>();
@@ -47,7 +47,7 @@ public class OrderProcessor {
                 }
                 Collections.sort(o.items, new Comparator <OrderItem>() {
                     public int compare(OrderItem o1, OrderItem o2) {
-                        return o1.goodsName.compareTo(o2.goodsName);
+                        return o1.googsName.compareTo(o2.googsName);
                     }
                 });
                 return o;
@@ -86,11 +86,11 @@ public class OrderProcessor {
         return count;
     }
     public List<Order> process(String shopId) {
-    List <Order> l = new ArrayList<>();
+        List <Order> l = new ArrayList<>();
         if (shopId == null) l.addAll(loadedOrders);
         else for (Order o: loadedOrders) if (o.shopId==shopId) l.add(o);
         return l;
-        }
+    }
     public Map<String, Double> statisticsByShop() {
         Map<String, Double> r = new TreeMap<>();
         Double s = 0.0;
@@ -105,8 +105,8 @@ public class OrderProcessor {
         Double s = 0.0;
         for (Order o : loadedOrders) {
             for (OrderItem i : o.items) {
-                if (r.containsKey(i.goodsName)) r.put(i.goodsName, r.get(i.goodsName) + i.price);
-                else r.put(i.goodsName, i.price);
+                if (r.containsKey(i.googsName)) r.put(i.googsName, r.get(i.googsName) + i.price);
+                else r.put(i.googsName, i.price);
             }
         }
         return r;
@@ -115,9 +115,13 @@ public class OrderProcessor {
         Map<LocalDate, Double> r = new TreeMap<>();
         Double s = 0.0;
         for (Order o : loadedOrders) {
-                if (r.containsKey(o.datetime.toLocalDate())) r.put(o.datetime.toLocalDate(), r.get(o.datetime.toLocalDate()) + o.sum);
-                else r.put(o.datetime.toLocalDate(), o.sum);
-            }
-        return r;
+            if (r.containsKey(o.datetime.toLocalDate())) r.put(o.datetime.toLocalDate(), r.get(o.datetime.toLocalDate()) + o.sum);
+            else r.put(o.datetime.toLocalDate(), o.sum);
         }
+        return r;
+    }
+
+    public static void main(String[] args) {
+
+    }
 }
