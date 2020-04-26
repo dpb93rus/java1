@@ -100,17 +100,24 @@ public class OrderProcessor {
         }
         return r;
     }
-//    public Map<String, Double> statisticsByGoods() {
-//        Map<String, Double> r = new TreeMap<>();
-//        Double s = 0.0;
-//        for (Order o : loadedOrders) {
-//            if (r.containsKey(o.items.g)) r.put(o.shopId, r.get(o.shopId) + o.sum);
-//            else r.put(o.shopId, o.sum);
-//        }
-//        return r;
-//    }
-//        }
-//        public Map<LocalDate, Double> statisticsByDay() {
-//
-//        }
+    public Map<String, Double> statisticsByGoods() {
+        Map<String, Double> r = new TreeMap<>();
+        Double s = 0.0;
+        for (Order o : loadedOrders) {
+            for (OrderItem i : o.items) {
+                if (r.containsKey(i.goodsName)) r.put(i.goodsName, r.get(i.goodsName) + i.price);
+                else r.put(i.goodsName, i.price);
+            }
+        }
+        return r;
+    }
+    public Map<LocalDate, Double> statisticsByDay() {
+        Map<LocalDate, Double> r = new TreeMap<>();
+        Double s = 0.0;
+        for (Order o : loadedOrders) {
+                if (r.containsKey(o.datetime.toLocalDate())) r.put(o.datetime.toLocalDate(), r.get(o.datetime.toLocalDate()) + o.sum);
+                else r.put(o.datetime.toLocalDate(), o.sum);
+            }
+        return r;
+        }
 }
