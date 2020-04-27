@@ -64,33 +64,37 @@ public class OrderProcessor {
         catch (IOException e) { e.printStackTrace(); }
         return null;
     }
+    public int exAdd (Order o, int c) {
+        if (o == null) return c++;
+        loadedOrders.add(o);
+        return c;
+    }
     public int loadOrders(LocalDate start, LocalDate finish, String shopId) {
         loadedOrders.clear();
         int count = 0;
         for (File temp : files) {
             Order t = checkAndReturn(temp);
-            if (t != null) {
-                if (start == null & finish == null) {
-                    if (shopId == null) loadedOrders.add(t);
-                    if (shopId != null && t.shopId.equals(shopId)) loadedOrders.add(t);
-                }
-                if (start != null & finish == null) {
-                    if (shopId == null && t.datetime.toLocalDate().isAfter(start)) loadedOrders.add(t);
-                    if (shopId != null && t.shopId.equals(shopId) && t.datetime.toLocalDate().isAfter(start))
-                        loadedOrders.add(t);
-                }
-                if (start == null & finish != null) {
-                    if (shopId == null && t.datetime.toLocalDate().isBefore(finish)) loadedOrders.add(t);
-                    if (shopId != null && t.shopId.equals(shopId) && t.datetime.toLocalDate().isBefore(finish))
-                        loadedOrders.add(t);
-                }
-                if (start != null & finish != null) {
-                    if (shopId == null && t.datetime.toLocalDate().isBefore(finish) &&
-                            t.datetime.toLocalDate().isAfter(start)) loadedOrders.add(t);
-                    if (shopId != null && t.shopId.equals(shopId) && t.datetime.toLocalDate().isBefore(finish) &&
-                            t.datetime.toLocalDate().isAfter(start)) loadedOrders.add(t);
-                }
-            } else count++;
+            if (start == null & finish == null) {
+                if (shopId == null) count = this.exAdd(t,count);;
+                if (shopId != null && t.shopId.equals(shopId)) count = this.exAdd(t,count);
+            }
+            if (start != null & finish == null) {
+                if (shopId == null && t.datetime.toLocalDate().isAfter(start)) count = this.exAdd(t,count);
+                if (shopId != null && t.shopId.equals(shopId) && t.datetime.toLocalDate().isAfter(start))
+                    count = this.exAdd(t,count);;
+            }
+            if (start == null & finish != null) {
+                if (shopId == null && t.datetime.toLocalDate().isBefore(finish)) count = this.exAdd(t,count);
+                if (shopId != null && t.shopId.equals(shopId) && t.datetime.toLocalDate().isBefore(finish))
+                    count = this.exAdd(t,count);
+            }
+            if (start != null & finish != null) {
+                if (shopId == null && t.datetime.toLocalDate().isBefore(finish) &&
+                            t.datetime.toLocalDate().isAfter(start)) count = this.exAdd(t,count);
+                if (shopId != null && t.shopId.equals(shopId) && t.datetime.toLocalDate().isBefore(finish) &&
+                            t.datetime.toLocalDate().isAfter(start)) count = this.exAdd(t,count);
+            }
+
         }
         return count;
     }
@@ -130,14 +134,14 @@ public class OrderProcessor {
         return r;
     }
 
-//    public static void main(String[] args) {
-//    OrderProcessor A = new OrderProcessor("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\files\\Folder2");
-//
-////        System.out.println(A.loadOrders(LocalDate.of(1991,12,12), LocalDate.of(2012,12,12), "S02"));
-//        System.out.println(A.loadOrders(null,null,null));
-//        System.out.println(A.process("S02"));
-//        System.out.println(A.statisticsByShop());
-//        System.out.println(A.statisticsByGoods());
-//        System.out.println(A.statisticsByDay());
-//    }
+    public static void main(String[] args) {
+    OrderProcessor A = new OrderProcessor("C:\\Users\\Dmitry\\IdeaProjects\\java1\\src\\ru\\progwards\\java1\\lessons\\files\\Folder2");
+
+        System.out.println(A.loadOrders(LocalDate.of(1991,12,12), LocalDate.of(2012,12,12), "S02"));
+        System.out.println(A.loadOrders(null,null,null));
+        System.out.println(A.process("S02"));
+        System.out.println(A.statisticsByShop());
+        System.out.println(A.statisticsByGoods());
+        System.out.println(A.statisticsByDay());
+    }
 }
