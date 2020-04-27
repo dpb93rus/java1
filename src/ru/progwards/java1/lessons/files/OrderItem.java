@@ -10,6 +10,8 @@ public class OrderItem {
         this.googsName = googsName;
         this.price = price;
     }
+    public OrderItem () {
+    }
 
 //    @Override
 //    public String toString() {
