@@ -3,7 +3,7 @@ package ru.progwards.java2.lessons.generics;
 import java.util.Comparator;
 
 public class ArraySort <T> {
-    public static <T extends Comparable> void sort (T [] a){
+    public static <T extends Comparable<T>> void sort (T [] a){
         int i = 0; int j = 0; T t;
         for (i = 0; i < a.length; i++) {
             for (j = i+1; j < a.length; j++){

@@ -6,42 +6,18 @@ import java.util.Collections;
 import java.util.Stack;
 
 public class HanoiTower {
-int size, pos; boolean show;  int[][] tower;
+int size, pos; static boolean show;  int[][] tower; int levelIteration;
     public HanoiTower(int size, int pos) {
-        this.size = size; this.pos = pos; show = false;
+        if (size < 1) {
+            System.err.println("Башня неизмеримо мала либо расположена в мнимом подпространстве");
+            return;
+        }
+        this.size = size; this.pos = pos; levelIteration = size;
          tower = new int[size][3];
          for (int a = 0; a < tower.length; a++) Arrays.fill(tower[a], 0);
         for (int i = 0; i <tower.length; i++) tower[i][pos-1] = tower.length - i;
         }
 
-
-    public void move (int from, int to) {
-        int a = 0;
-        int b = 0;
-        for (a = 0; ((tower[a][from - 1]!= 0) && (a < tower.length-1)); a++);
-        for (b = 0; ((tower[b][to - 1]!= 0) && (b < tower.length-1)); b++);
-        tower[b][to - 1] = tower[a][from - 1];
-        tower[a][from - 1] = 0;
-    }
-
-
-//    public void move (int from, int to) {
-//        int i = tower.length-1;
-//        while (i >= 0) {
-//            if ((tower[i][from - 1] != 0)
-//            for (int j = 0; j < tower.length; j++) {
-//                 && (tower[j][to - 1] == 0)) {
-//                    if (j == 0 || tower[j - 1][to - 1] > tower[j][to - 1]) {
-//                        tower[i][to - 1] = tower[j][from - 1];
-//                        tower[j][from - 1] = 0;
-//                        return;
-//                    }
-//
-//                }
-//            }
-//        }
-//        System.out.println("Недопустимая операция");
-//    }
     static String ring(int num) {
         String ring;
         if (num < 10) return  " <00" + num + "> "; if (num < 100) return "<0" + num + ">"; else return "<" + num + ">";
@@ -58,13 +34,51 @@ int size, pos; boolean show;  int[][] tower;
         }
         System.out.println(base);
     }
-    void setTrace(boolean on) {
-        show = on;
+    static void setTrace(boolean on) {
+        if (on) show = true;
+    }
+    public boolean moveStep (int from, int to) {
+        int a = 0;
+        int b = 0;
+        for (a = 0; a < tower.length; a++) if (tower[a][from - 1] == 0) break;
+        for (b = 0; ((tower[b][to - 1]!= 0) && (b < tower.length+1)); b++);
+//        if ((b != 0) && (a == 0 || b > 4 || tower[b][to - 1] < tower[b-1][to - 1])) {
+//            System.err.println("Недопустимая операция");
+//            return false;
+//        }
+        tower[b][to - 1] = tower[a-1][from - 1];
+        tower[a-1][from - 1] = 0;
+        if (show) this.print();
+        return true;
     }
 
+
+    public void move (int from, int to) {
+        if (levelIteration == 1) {
+            this.moveStep(from,to);
+            return;
+        }
+
+        this.move(from,6-from-to,levelIteration-1); this.moveStep(from,to); this.move(6-from-to,to, levelIteration-1);
+
+    }
+    public void move (int from, int to, int levelIteration) {
+        if (levelIteration == 1) {
+            this.moveStep(from,to);
+            return;
+        }
+
+        this.move(from,6-from-to,levelIteration-1); this.moveStep(from,to); this.move(6-from-to,to, levelIteration-1);
+    }
+
+
+
     public static void main(String[] args) {
-        HanoiTower a = new HanoiTower(5,1);
+        HanoiTower a = new HanoiTower(3,1);
+        setTrace(true);
         a.print();
-        a.move(1,2);a.print();a.move(2,1);a.print();
+        a.move(1,3);
+        a.print();
+
     }
 }

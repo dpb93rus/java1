@@ -3,28 +3,25 @@ package ru.progwards.java2.lessons.generics;
 import java.util.ArrayList;
 
 public class FruitBox <T extends Fruit> extends ArrayList<T> implements Comparable <FruitBox<T>>{
-    ArrayList<T> a;
-    public FruitBox  () {
-        a = new ArrayList<>();
-    }
+
     public void addFruit(T r) {
-        if (this.a.isEmpty()|(r.getClass().equals(this.a.get(0).getClass()))) this.a.add(r);
+        if (this.isEmpty()|(r.getClass().equals(this.get(0).getClass()))) this.add(r);
         else throw new UnsupportedOperationException ("UnsupportedOperationException");
     }
     public float getWeight(){
-        if (this.a.size() == 0) return 0l;
-        return this.a.get(0).weight * a.size();
+        if (this.size() == 0) return 0l;
+        return this.get(0).weight * this.size();
     }
     public void moveTo(FruitBox b) {
-        if ((this.a.isEmpty() || b.isEmpty()) || (b.a.get(0).getClass().equals(this.a.get(0).getClass()))) {
-            b.a.addAll(this.a);
-            this.a.clear();
+        if ((this.isEmpty() || b.isEmpty()) || (b.get(0).getClass().equals(this.get(0).getClass()))) {
+            b.addAll(this);
+            this.clear();
         } else throw new UnsupportedOperationException("UnsupportedOperationException");
     }
     @Override
     public int compareTo(FruitBox <T> b) {
-        if ((this.a.get(0).weight * this.a.size() == b.a.get(0).weight * b.size())) return 0;
-        if ((this.a.get(0).weight * this.a.size() > b.a.get(0).weight * b.size())) return 1;
+        if ((this.get(0).weight * this.size() == b.get(0).weight * b.size())) return 0;
+        if ((this.get(0).weight * this.size() > b.get(0).weight * b.size())) return 1;
         return -1;
     }
 
