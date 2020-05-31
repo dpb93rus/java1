@@ -163,14 +163,6 @@ public class DoubleHashTable<K extends HashValue, V> {
 
 
     public static void main(String[] args) {
-        DoubleHashTable<MyString, Integer> q = new DoubleHashTable<>();
-        for (int i = 0; i < 1000; i++) {
-            MyString a = new MyString(i + "Key");
-            q.add(a, i + 10 * i + 100 * i);
-            System.out.println(a.myString);
-            System.out.println(q.absSize);
-        }
-        q.remove(new MyString("4Key"));
-        System.out.println(q.get(new MyString("3Key")));
+
     }
 }
