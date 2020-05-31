@@ -38,8 +38,7 @@ int size, pos; static boolean show;  int[][] tower; int levelIteration;
         if (on) show = true;
     }
     public boolean moveStep (int from, int to) {
-        int a = 0;
-        int b = 0;
+        int a = 0; int b = 0;
         for (a = 0; a < tower.length; a++) if (tower[a][from - 1] == 0) break;
         for (b = 0; ((tower[b][to - 1]!= 0) && (b < tower.length+1)); b++);
 //        if ((b != 0) && (a == 0 || b > 4 || tower[b][to - 1] < tower[b-1][to - 1])) {
@@ -74,7 +73,7 @@ int size, pos; static boolean show;  int[][] tower; int levelIteration;
 
 
     public static void main(String[] args) {
-        HanoiTower a = new HanoiTower(3,1);
+        HanoiTower a = new HanoiTower(9,1);
         setTrace(true);
         a.print();
         a.move(1,3);
