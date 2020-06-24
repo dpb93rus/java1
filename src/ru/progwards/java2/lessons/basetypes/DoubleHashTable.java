@@ -36,6 +36,7 @@ public class DoubleHashTable<K extends HashValue, V> {
     static int size(DoubleHashTable a) {
         return a.size;
     }
+
     static int getAbsSize(DoubleHashTable a) {
         return a.absSize;
     }
@@ -45,7 +46,15 @@ public class DoubleHashTable<K extends HashValue, V> {
         Element<K, V> doubleTable[] = new Element[absDoubleSize];
         for (int i = 0; i < absSize; i++) {
             if (doubleHashTable[i] == null || doubleHashTable[i].delMark) continue;
-            doubleTable[doubleHashTable[i].key.getHash(absDoubleSize)] = doubleHashTable[i];
+            int hashCode = doubleHashTable[i].key.getHash(absDoubleSize);
+            if (doubleTable[hashCode]==null) { doubleTable[hashCode] = doubleHashTable[i]; continue; }
+            for (int probe = 0; probe <= absDoubleSize / 5; probe++) {
+                int deepHash = MyMath.deepHash(hashCode + probe + 1, absSize);
+                if (doubleTable[deepHash]==null) {
+                    doubleTable[deepHash] = doubleHashTable[i];
+                    break;
+                }
+            }
         }
         doubleHashTable = doubleTable;
         absSize = absDoubleSize;
@@ -64,10 +73,12 @@ public class DoubleHashTable<K extends HashValue, V> {
 
     public V get(K key) {
         int hashCode = key.getHash(absSize);
-        if (doubleHashTable[hashCode]!= null&&key.equals(doubleHashTable[hashCode].key)) return doubleHashTable[hashCode].value;
-        for (int probe = 0; probe <= absSize / 10; probe++) {
-            int deepHash = MyMath.deepHash(hashCode + probe + 1, absSize);
-            if (doubleHashTable[deepHash]!= null&&key.equals(doubleHashTable[deepHash].key)) return doubleHashTable[deepHash].value;
+        if (doubleHashTable[hashCode] != null && key.equals(doubleHashTable[hashCode].key))
+            return doubleHashTable[hashCode].value;
+        for (int probe = 0; probe <= absSize*10; probe++) {
+            int deepHash = MyMath.deepHash(hashCode + probe, absSize);
+            if (doubleHashTable[deepHash] != null && key.equals(doubleHashTable[deepHash].key))
+                return doubleHashTable[deepHash].value;
         }
         return null;
     }
@@ -79,15 +90,15 @@ public class DoubleHashTable<K extends HashValue, V> {
             if (key.equals(doubleHashTable[hashCode].key)) {
                 doubleHashTable[hashCode] = new Element<>();
                 size--;
-                if (size < absSize / 10) this.halfSize();
+                if (size < absSize / 5) this.halfSize();
                 return;
             }
-            for (int probe = 0; probe <= absSize / 10; probe++) {
-                int deepHash = MyMath.deepHash(hashCode + probe + 1, absSize);
+            for (int probe = 0; probe <= absSize / 5; probe++) {
+                int deepHash = MyMath.deepHash(hashCode + probe, absSize);
                 if (key.equals(doubleHashTable[deepHash].key)) {
                     doubleHashTable[deepHash] = new Element<>();
                     size--;
-                    if (size < absSize / 10) this.halfSize();
+                    if (size < absSize / 5) this.halfSize();
                     return;
 
                 }
@@ -104,8 +115,8 @@ public class DoubleHashTable<K extends HashValue, V> {
                 doubleHashTable[hashCode] = new Element<>(key, value);
                 return;
             } else {
-                for (int probe = 0; probe <= absSize / 5; probe++) {
-                    int deepHash = MyMath.deepHash(hashCode + probe + 1, absSize);
+                for (int probe = 0; probe <= absSize / 10; probe++) {
+                    int deepHash = MyMath.deepHash(hashCode + probe, absSize);
                     if (key.equals(doubleHashTable[deepHash].key)) {
                         doubleHashTable[deepHash] = new Element<>(key, value);
                         return;
@@ -118,8 +129,8 @@ public class DoubleHashTable<K extends HashValue, V> {
                 size++;
                 return;
             }
-            for (int probe = 0; probe <= absSize / 5; probe++) {
-                int deepHash = MyMath.deepHash(hashCode + probe + 1, absSize);
+            for (int probe = 0; probe <= absSize / 10; probe++) {
+                int deepHash = MyMath.deepHash(hashCode + probe, absSize);
                 if (doubleHashTable[deepHash] == null || doubleHashTable[deepHash].delMark) {
                     doubleHashTable[deepHash] = new Element<>(key, value);
                     size++;
@@ -134,10 +145,10 @@ public class DoubleHashTable<K extends HashValue, V> {
     public void change(K key1, K key2) {
         V tempValue = get(key1);
         remove(key1);
-        add(key2,tempValue);
+        add(key2, tempValue);
     }
 
-    public Iterator<Element<K,V>> getIterator() {
+    public Iterator<Element<K, V>> getIterator() {
         return new Iterator<Element<K, V>>() {
             int pos = 0;
 
@@ -161,8 +172,23 @@ public class DoubleHashTable<K extends HashValue, V> {
     }
 
 
-
     public static void main(String[] args) {
+        DoubleHashTable<MyString, Integer> q = new DoubleHashTable<>();
+        for (int i = 0; i < 150; i++) {
+            MyString a = new MyString(i + "Key");
+            q.add(a, i);
+        }
+        for (int i = 0; i < getAbsSize(q); i++) {
+            if (q.doubleHashTable[i] == null) System.out.println("null");
+            else System.out.println(q.doubleHashTable[i].value);
 
+        }
+        System.out.println("");
+        System.out.println(size(q));
+        System.out.println(q.absSize);
+        System.out.println("");
+        for (int i = 0; i < getAbsSize(q); i++) {
+            System.out.println(q.get(new MyString(i + "Key")));
+        }
     }
 }
