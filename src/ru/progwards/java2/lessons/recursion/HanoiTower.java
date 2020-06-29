@@ -9,14 +9,20 @@ public class HanoiTower {
 int size, pos; static boolean show;  int[][] tower; int levelIteration;
     public HanoiTower(int size, int pos) {
         if (size < 1) {
-            System.err.println("Башня неизмеримо мала либо расположена в мнимом подпространстве");
+            System.err.println("Башня неизмеримо мала либо расположена в мнимом подпространстве, мнимой размерности, фантомной модальности");
             return;
         }
         this.size = size; this.pos = pos; levelIteration = size;
          tower = new int[size][3];
          for (int a = 0; a < tower.length; a++) Arrays.fill(tower[a], 0);
         for (int i = 0; i <tower.length; i++) tower[i][pos-1] = tower.length - i;
-        }
+    }
+    public HanoiTower() {
+        size = 5; pos = 1; levelIteration = size;
+        tower = new int[size][3];
+        for (int a = 0; a < tower.length; a++) Arrays.fill(tower[a], 0);
+        for (int i = 0; i <tower.length; i++) tower[i][pos-1] = tower.length - i;
+    }
 
     static String ring(int num) {
         String ring;
@@ -72,12 +78,12 @@ int size, pos; static boolean show;  int[][] tower; int levelIteration;
 
 
 
-    public static void main(String[] args) {
-        HanoiTower a = new HanoiTower(9,1);
-        setTrace(true);
-        a.print();
-        a.move(1,3);
-        a.print();
-
-    }
+//    public static void main(String[] args) {
+//        HanoiTower a = new HanoiTower(9,1);
+//        setTrace(true);
+//        a.print();
+//        a.move(1,3);
+//        a.print();
+//
+//    }
 }
